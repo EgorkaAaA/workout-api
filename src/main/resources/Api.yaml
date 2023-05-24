@@ -1,0 +1,198 @@
+---
+openapi: 3.0.0
+info:
+  title: WorkOut Api
+  description: Api of backend workout application
+  version: 1.0.0
+servers:
+  - url: https://virtserver.swaggerhub.com/SuperMegaTeamForDev/Workout/1.0.0
+    description: SwaggerHub API Auto Mocking
+tags:
+  - name: Dashboard
+  - name: Notification
+  - name: Plan
+paths:
+  /api/dashboard/{userId}:
+    get:
+      tags:
+        - Dashboard
+      summary: get Dashboard statistic for user
+      operationId: getDashboard
+      parameters:
+        - name: userId
+          in: path
+          description: user account from telegram
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: returns graph
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dashboard'
+        "400":
+          description: bad input parameter
+        "404":
+          description: type not found or user not found
+  /api/notification:
+    post:
+      tags:
+      - Notification
+      summary: enable notification by type
+      operationId: enableNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+      responses:
+        "200":
+          description: enable notification
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+        "404":
+          description: 'User not found'
+  /api/plan/training:
+    post:
+      tags:
+       - Plan
+      summary: set plan of training for user
+      operationId: setTrainingPlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrainingPlan'
+      responses:
+        "200":
+          description: training plan successfully set
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/TrainingPlan'
+components:
+  schemas:
+    Dashboard:
+      required:
+        - data
+        - type
+      type: object
+      properties:
+        type:
+          type: object
+          items:
+            $ref: '#/components/schemas/Type'
+          example: graph-sleep
+        data:
+          type: array
+          example:
+            - date: 2023-01-01
+              sleepNeeded: 12
+              sleepActual: 8
+              neededAvg: 8.5
+              actualAvg: 6.5
+            - date: 2023-01-02
+              sleepNeeded: 8
+              sleepActual: 12
+              neededAvg: 8.5
+              actualAvg: 6.5
+            - date: 2023-01-03
+              sleepNeeded: 6
+              sleepActual: 12
+              neededAvg: 8.5
+              actualAvg: 6.5
+          items:
+            $ref: '#/components/schemas/DashboardData'
+    DashboardData:
+      type: object
+      properties:
+        date:
+          type: string
+          example: 2023-01-01
+        plan:
+          type: integer
+          example: 12
+        actual:
+          type: integer
+          example: 8
+        planAvg:
+          type: integer
+          example: 12
+        actualAvg:
+          type: integer
+          example: 8
+    Type:
+      type: string
+      enum: [ calories, sleep, training ]
+    Notification:
+      type: object
+      required:
+        - type
+        - userId
+      properties:
+        type:
+          type: object
+          items:
+            $ref: '#/components/schemas/Type'
+          example: sleep
+        userId:
+          type: string
+          example: '@Egor'
+    TrainingPlan:
+      type: object
+      required:
+        - userId
+        - exercises
+      properties:
+        userId:
+          type: string
+          example: '@Egor'
+        exercises:
+          type: object
+          items:
+            $ref: '#/components/schemas/Exercises'
+        days:
+          type: array
+          enum:
+            - MONDAY
+            - TUESDAY
+            - WEDNESDAY
+            - THURSDAY
+            - FRIDAY
+            - SATURDAY
+            - SUNDAY
+          example: [MONDAY, FRIDAY]
+        comment:
+          type: string
+          example: 'do it'
+    Exercises:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: 'Push ups'
+        sets:
+          type: number
+          example: 10
+        repeats:
+          type: number
+          example: 20
+        comment:
+          type: string
+          example: 'Do it'
