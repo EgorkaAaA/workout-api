@@ -2,6 +2,7 @@ package ru.egot.diplom.workout.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Setter
 public class ExerciseEntity extends BaseEntity {
 
-    @Column(name = "USER_ID")
+    @JoinColumn(name = "USER_ID")
     @NotNull
     @ManyToOne
     private User user;

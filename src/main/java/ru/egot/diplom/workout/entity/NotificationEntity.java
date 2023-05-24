@@ -3,6 +3,7 @@ package ru.egot.diplom.workout.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import ru.egot.diplom.workout.enums.GraphType;
 @Setter
 public class NotificationEntity extends BaseEntity {
 
-    @Column(name = "USER_ID")
+    @JoinColumn(name = "USER_ID")
     @NotNull
     @ManyToOne
     private User user;

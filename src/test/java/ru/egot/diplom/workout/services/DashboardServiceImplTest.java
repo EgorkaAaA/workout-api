@@ -7,9 +7,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.egot.diplom.workout.dto.statistic.DashboardData;
 import ru.egot.diplom.workout.entity.CaloriesEntity;
 import ru.egot.diplom.workout.entity.SleepEntity;
+import ru.egot.diplom.workout.entity.User;
 import ru.egot.diplom.workout.repositories.CaloriesStatisticRepo;
 import ru.egot.diplom.workout.repositories.SleepStatisticRepo;
-import ru.egot.diplom.workout.services.impl.GraphServiceImpl;
+import ru.egot.diplom.workout.services.impl.DashboardServiceImpl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @Disabled
-class GraphServiceImplTest {
+class DashboardServiceImplTest {
 
 		@MockBean
 		private CaloriesStatisticRepo caloriesStatisticRepo;
@@ -42,7 +43,7 @@ class GraphServiceImplTest {
 		@Test
 		@Disabled
 		void getDashboardStatistic() {
-				final GraphServiceImpl graphService = new GraphServiceImpl(sleepStatisticRepo, caloriesStatisticRepo);
+				final DashboardServiceImpl graphService = new DashboardServiceImpl(sleepStatisticRepo, caloriesStatisticRepo);
 				List<DashboardData> dashboardDataCalories = Collections.singletonList(new DashboardData().toBuilder()
 						.date("2023-01-01")
 						.build());
@@ -56,7 +57,7 @@ class GraphServiceImplTest {
 				for (int i = 0; i < 7; i++) {
 						caloriesEntities.add(
 								new CaloriesEntity(
-										1L,
+										new User(),
 										LocalDate.now().minusDays(i),
 										1000,
 										1000
@@ -71,7 +72,7 @@ class GraphServiceImplTest {
 				for (int i = 0; i < 7; i++) {
 						caloriesEntities.add(
 								new SleepEntity(
-										1L,
+										new User(),
 										LocalDate.now().minusDays(i),
 										7,
 										8

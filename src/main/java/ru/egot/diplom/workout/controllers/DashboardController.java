@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.egot.diplom.workout.dto.statistic.Dashboard;
-import ru.egot.diplom.workout.services.GraphService;
+import ru.egot.diplom.workout.services.DashboardService;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DashboardController {
 
-    private final GraphService graphService;
+    private final DashboardService dashboardService;
 
     @GetMapping()
     public List<Dashboard> getGraph() {
-        return graphService.getDashboardStatistic();
+        return dashboardService.getDashboardStatistic();
     }
 
 }

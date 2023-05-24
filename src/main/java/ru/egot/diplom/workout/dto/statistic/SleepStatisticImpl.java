@@ -14,7 +14,7 @@ public class SleepStatisticImpl implements Statistic {
 
     @Override
     public Long getUserId() {
-        return sleepEntity.getUserId();
+        return sleepEntity.getUserId().getId();
     }
 
     @Override

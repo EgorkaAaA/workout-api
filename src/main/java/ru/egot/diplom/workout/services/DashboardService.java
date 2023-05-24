@@ -6,7 +6,7 @@ import ru.egot.diplom.workout.dto.statistic.Dashboard;
 import java.util.List;
 
 @Service
-public interface GraphService {
+public interface DashboardService {
 
     List<Dashboard> getDashboardStatistic();
 

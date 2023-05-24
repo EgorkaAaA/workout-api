@@ -1,6 +1,9 @@
 package ru.egot.diplom.workout.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,15 +20,20 @@ import java.time.LocalDate;
 public class CaloriesEntity extends BaseEntity{
 
     @NotNull
-    private Long userId;
+    @JoinColumn(name = "USER_ID")
+    @ManyToOne
+    private User user;
 
     @NotNull
+    @Column(name = "DATE")
     private LocalDate date;
 
     @NotNull
+    @Column(name = "CALORIES_ACTUAL")
     private long caloriesActual;
 
     @NotNull
+    @Column(name = "CALORIES_PLAN")
     private long caloriesPlan;
 
 }

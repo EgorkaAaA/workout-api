@@ -14,7 +14,7 @@ public class CaloriesStatisticImpl implements Statistic {
 
     @Override
     public Long getUserId() {
-        return caloriesEntity.getUserId();
+        return caloriesEntity.getUser().getId();
     }
 
     @Override

@@ -7,7 +7,7 @@ import ru.egot.diplom.workout.dto.statistic.*;
 import ru.egot.diplom.workout.enums.GraphType;
 import ru.egot.diplom.workout.repositories.CaloriesStatisticRepo;
 import ru.egot.diplom.workout.repositories.SleepStatisticRepo;
-import ru.egot.diplom.workout.services.GraphService;
+import ru.egot.diplom.workout.services.DashboardService;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class GraphServiceImpl implements GraphService {
+public class DashboardServiceImpl implements DashboardService {
 
 		private final SleepStatisticRepo sleepStatisticRepo;
 

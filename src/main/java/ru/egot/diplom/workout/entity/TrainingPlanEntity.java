@@ -1,9 +1,6 @@
 package ru.egot.diplom.workout.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +18,7 @@ import java.util.List;
 public class TrainingPlanEntity extends BaseEntity {
 
     @NotNull
-    @Column(name = "USER_ID")
+    @JoinColumn(name = "USER_ID")
     @ManyToOne
     private User user;
 
