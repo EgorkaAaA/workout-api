@@ -1,0 +1,10 @@
+version: '2'
+services:
+  backend:
+    container_name: backend-app-1
+    build:
+      context: docker-message-server
+      dockerfile: Dockerfile
+    image: message-server:latest
+    ports:
+      - 8080:80
