@@ -16,6 +16,9 @@ public enum TrainingApiDifficulty {
     private final String name;
 
     public static TrainingApiDifficulty getDifficultyByName(String name) {
+        if (name == null) {
+            return null;
+        }
         return Arrays.stream(TrainingApiDifficulty.values())
                 .map(TrainingApiDifficulty::getName)
                 .filter(n -> n.equals(name.toLowerCase()))

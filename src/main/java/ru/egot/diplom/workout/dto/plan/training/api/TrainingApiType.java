@@ -20,6 +20,9 @@ public enum TrainingApiType {
     private final String name;
 
     public static TrainingApiType getTypeByName(String name) {
+        if (name == null) {
+            return null;
+        }
         return Arrays.stream(TrainingApiType.values())
                 .map(TrainingApiType::getName)
                 .filter(n -> n.equals(name.toLowerCase()))

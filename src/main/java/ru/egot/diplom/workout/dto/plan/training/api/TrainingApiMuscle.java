@@ -29,6 +29,9 @@ public enum TrainingApiMuscle {
     private final String name;
 
     public static TrainingApiMuscle getMuscleByName(String name) {
+        if (name == null) {
+            return null;
+        }
         return Arrays.stream(TrainingApiMuscle.values())
                 .map(TrainingApiMuscle::getName)
                 .filter(n -> n.equals(name.toLowerCase()))
