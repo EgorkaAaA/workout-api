@@ -1,3 +1,7 @@
 server:
   servlet:
     context-path: /api
+api:
+  training:
+    url: https://api.api-ninjas.com/v1/exercises
+    key: ${API_TRAINING_KEY}

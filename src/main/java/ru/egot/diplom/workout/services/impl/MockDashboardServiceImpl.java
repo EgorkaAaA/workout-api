@@ -1,10 +1,11 @@
-package ru.egot.diplom.workout.services;
+package ru.egot.diplom.workout.services.impl;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.egot.diplom.workout.dto.statistic.Dashboard;
 import ru.egot.diplom.workout.dto.statistic.DashboardData;
 import ru.egot.diplom.workout.enums.GraphType;
+import ru.egot.diplom.workout.services.DashboardService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

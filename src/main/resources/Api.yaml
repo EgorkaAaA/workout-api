@@ -11,6 +11,7 @@ tags:
   - name: Dashboard
   - name: Notification
   - name: Plan
+  - name: Recommendations
 paths:
   /api/dashboard/{userId}:
     get:
@@ -84,6 +85,73 @@ paths:
                 type: object
                 items:
                   $ref: '#/components/schemas/TrainingPlan'
+  /recommendations:
+    get:
+      tags:
+        - Recommendations
+      summary: "GET recommendations"
+      operationId: "getTrainingRecommendations"
+      parameters:
+        - name: "type"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            enum:
+              - "CARDIO"
+              - "OLYMPIC_WEIGHTLIFTING"
+              - "PLYOMETRICS"
+              - "POWERLIFTING"
+              - "STRENGTH"
+              - "STRETCHING"
+              - "STRONGMAN"
+        - name: "muscle"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+            enum:
+              - "ABDOMINALS"
+              - "ABDUCTORS"
+              - "ADDUCTORS"
+              - "BICEPS"
+              - "CALVES"
+              - "CHEST"
+              - "FOREARMS"
+              - "GLUTES"
+              - "HAMSTRINGS"
+              - "LATS"
+              - "LOWER_BACK"
+              - "MIDDLE_BACK"
+              - "NECK"
+              - "QUADRICEPS"
+              - "TRAPS"
+              - "TRICEPS"
+        - name: "difficulty"
+          in: "query"
+          required: false
+          schema:
+            type: "string"
+            enum:
+              - "BEGINNER"
+              - "INTERMEDIATE"
+              - "EXPERT"
+        - name: "offset"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/TrainingApiResponse"
 components:
   schemas:
     Dashboard:
@@ -196,3 +264,18 @@ components:
         comment:
           type: string
           example: 'Do it'
+    TrainingApiResponse:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        type:
+          type: "string"
+        muscle:
+          type: "string"
+        equipment:
+          type: "string"
+        difficulty:
+          type: "string"
+        instructions:
+          type: "string"
