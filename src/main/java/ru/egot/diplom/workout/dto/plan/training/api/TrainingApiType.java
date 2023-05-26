@@ -22,7 +22,7 @@ public enum TrainingApiType {
     public static TrainingApiType getTypeByName(String name) {
         return Arrays.stream(TrainingApiType.values())
                 .map(TrainingApiType::getName)
-                .filter(n -> n.equals(name))
+                .filter(n -> n.equals(name.toLowerCase()))
                 .findFirst()
                 .map(n -> TrainingApiType.valueOf(name.toUpperCase()))
                 .orElseThrow(() -> new RuntimeException("Type not found!"));

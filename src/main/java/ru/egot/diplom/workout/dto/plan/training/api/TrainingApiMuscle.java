@@ -31,7 +31,7 @@ public enum TrainingApiMuscle {
     public static TrainingApiMuscle getMuscleByName(String name) {
         return Arrays.stream(TrainingApiMuscle.values())
                 .map(TrainingApiMuscle::getName)
-                .filter(n -> n.equals(name))
+                .filter(n -> n.equals(name.toLowerCase()))
                 .findFirst()
                 .map(n -> TrainingApiMuscle.valueOf(name.toUpperCase()))
                 .orElseThrow(() -> new RuntimeException("Muscle not found!"));

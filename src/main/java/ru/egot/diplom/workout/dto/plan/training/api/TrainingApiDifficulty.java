@@ -18,7 +18,7 @@ public enum TrainingApiDifficulty {
     public static TrainingApiDifficulty getDifficultyByName(String name) {
         return Arrays.stream(TrainingApiDifficulty.values())
                 .map(TrainingApiDifficulty::getName)
-                .filter(n -> n.equals(name))
+                .filter(n -> n.equals(name.toLowerCase()))
                 .findFirst()
                 .map(n -> TrainingApiDifficulty.valueOf(name.toUpperCase()))
                 .orElseThrow(() -> new RuntimeException("Difficulty not found!"));
