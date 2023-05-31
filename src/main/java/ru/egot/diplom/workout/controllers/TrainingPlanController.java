@@ -9,8 +9,6 @@ import ru.egot.diplom.workout.dto.plan.TrainingPlan;
 import ru.egot.diplom.workout.entity.TrainingPlanEntity;
 import ru.egot.diplom.workout.services.TrainingPlanService;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/plan/training")
@@ -19,7 +17,7 @@ public class TrainingPlanController {
 	private final TrainingPlanService trainingPlanService;
 
 	@PostMapping
-	public List<TrainingPlanEntity> setTrainingPlanForUser(@RequestBody List<TrainingPlan> trainingPlan) {
+	public TrainingPlanEntity setTrainingPlanForUser(@RequestBody TrainingPlan trainingPlan) {
 		return trainingPlanService.setTrainingPlanForUser(trainingPlan);
 	}
 }

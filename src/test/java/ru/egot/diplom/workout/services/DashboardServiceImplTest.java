@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @Disabled
@@ -30,26 +29,39 @@ class DashboardServiceImplTest {
 		@MockBean
 		private SleepStatisticRepo sleepStatisticRepo;
 
+		@MockBean
+		private UserService userService;
+
 		@BeforeAll
 		void setUp() {
-				when(caloriesStatisticRepo.findAllByDateBetweenAndUserId(any(), any(), anyLong())).thenReturn(
+				when(caloriesStatisticRepo.findAllByDateBetweenAndUserId(any(), any(), any())).thenReturn(
 						getCaloriesEntity()
 				);
-				when(sleepStatisticRepo.findAllByDateBetweenAndUserId(any(), any(), anyLong())).thenReturn(
+				when(sleepStatisticRepo.findAllByDateBetweenAndUserId(any(), any(), any())).thenReturn(
 						getSleepEntity()
+				);
+				when(userService.getUserByName(anyString())).thenReturn(
+						getUser()
 				);
 		}
 
 		@Test
 		@Disabled
 		void getDashboardStatistic() {
-				final DashboardServiceImpl graphService = new DashboardServiceImpl(sleepStatisticRepo, caloriesStatisticRepo);
+				final DashboardServiceImpl graphService = new DashboardServiceImpl(sleepStatisticRepo, caloriesStatisticRepo, userService);
 				List<DashboardData> dashboardDataCalories = Collections.singletonList(new DashboardData().toBuilder()
 						.date("2023-01-01")
 						.build());
 
 
 				graphService.getDashboardStatistic();
+		}
+
+		private User getUser() {
+				return new User(
+						"EGOR",
+						"123"
+				);
 		}
 
 		private List<CaloriesEntity> getCaloriesEntity() {

@@ -1,11 +1,11 @@
-package ru.egot.diplom.workout.enums;
+package ru.egot.diplom.workout.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum GraphType {
+public enum Type {
 
     SLEEP("sleep"),
     CALORIES("calories");

@@ -4,10 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.egot.diplom.workout.dto.statistic.*;
-import ru.egot.diplom.workout.enums.GraphType;
+import ru.egot.diplom.workout.entity.Type;
 import ru.egot.diplom.workout.repositories.CaloriesStatisticRepo;
 import ru.egot.diplom.workout.repositories.SleepStatisticRepo;
 import ru.egot.diplom.workout.services.DashboardService;
+import ru.egot.diplom.workout.services.UserService;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -25,17 +26,19 @@ public class DashboardServiceImpl implements DashboardService {
 
 		private final CaloriesStatisticRepo caloriesStatisticRepo;
 
+		private final UserService userService;
+
 		private final Principal securityContextHolder = SecurityContextHolder.getContext().getAuthentication();
 
-		private final Map<GraphType, BiFunction<LocalDate, LocalDate, List<Statistic>>> map = Map.of(
-				GraphType.SLEEP, this::getSleepStatistic,
-				GraphType.CALORIES, this::getCaloriesStatistic
+		private final Map<Type, BiFunction<LocalDate, LocalDate, List<Statistic>>> map = Map.of(
+				Type.SLEEP, this::getSleepStatistic,
+				Type.CALORIES, this::getCaloriesStatistic
 		);
 
 		@Override
 		public List<Dashboard> getDashboardStatistic() {
 				final List<Dashboard> dashboards = new ArrayList<>();
-				for (GraphType type : GraphType.values()) {
+				for (Type type : Type.values()) {
 						dashboards.add(
 								new Dashboard(
 										type.getName(),
@@ -47,8 +50,6 @@ public class DashboardServiceImpl implements DashboardService {
 																.date(s.getDate().toString())
 																.actual(s.getActual())
 																.plan(s.getPlan())
-																.planAvg(1)
-																.actualAvg(1)
 																.build()
 												)
 												.collect(Collectors.toList())
@@ -62,14 +63,14 @@ public class DashboardServiceImpl implements DashboardService {
 
 		private List<Statistic> getSleepStatistic(LocalDate localDateTime, LocalDate localDateTime1) {
 				String userName = securityContextHolder.getName();
-				return sleepStatisticRepo.findAllByDateBetweenAndUserId(localDateTime, localDateTime1, Long.valueOf(userName)).stream()
+				return sleepStatisticRepo.findAllByDateBetweenAndUserId(localDateTime, localDateTime1, userService.getUserByName(userName)).stream()
 						.map(SleepStatisticImpl::new)
 						.collect(Collectors.toList());
 		}
 
 		private List<Statistic> getCaloriesStatistic(LocalDate localDateTime, LocalDate localDateTime1) {
 				String userName = securityContextHolder.getName();
-				return caloriesStatisticRepo.findAllByDateBetweenAndUserId(localDateTime, localDateTime1, Long.valueOf(userName)).stream()
+				return caloriesStatisticRepo.findAllByDateBetweenAndUserId(localDateTime, localDateTime1, userService.getUserByName(userName)).stream()
 						.map(CaloriesStatisticImpl::new)
 						.collect(Collectors.toList());
 		}

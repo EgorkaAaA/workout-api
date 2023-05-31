@@ -22,6 +22,7 @@ public class NotificationController {
 		public List<NotificationEntity> setNotifications(@RequestBody List<Notification> notification) {
 				return notificationService.setNotificationForUser(notification);
 		}
+
 }
 
 

@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.egot.diplom.workout.enums.GraphType;
 
 @Entity
 @AllArgsConstructor
@@ -26,7 +25,7 @@ public class NotificationEntity extends BaseEntity {
 
     @Column(name = "TYPE")
     @NotNull
-    private GraphType type;
+    private Type type;
 
     @Column(name = "ENABLED")
     @NotNull

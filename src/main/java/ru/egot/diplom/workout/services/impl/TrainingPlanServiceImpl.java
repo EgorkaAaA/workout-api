@@ -16,27 +16,24 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TrainingPlanServiceImpl implements TrainingPlanService {
 
-    private final TrainingPlanRepo trainingPlanRepo;
+		private final TrainingPlanRepo trainingPlanRepo;
 
-    @Override
-    public List<TrainingPlanEntity> setTrainingPlanForUser(List<TrainingPlan> trainingPlans) throws UsernameNotFoundException {
-        return trainingPlanRepo.saveAll(
-                trainingPlans.stream()
-                        .map(t -> {
-                                    final User user = new User(t.getUserId(), "");
-                                    return new TrainingPlanEntity(
-                                            user,
-                                            getExerciseEntities(t, user),
-                                            t.getDays(),
-                                            t.getComment(),
-                                            true
-                                    );
-                                }
-                        ).toList()
-        );
-    }
+		@Override
+		public TrainingPlanEntity setTrainingPlanForUser(TrainingPlan trainingPlans) throws UsernameNotFoundException {
+				final User user = new User(trainingPlans.getUserId(), "");
+				return trainingPlanRepo.save(
+						new TrainingPlanEntity(
+								user,
+								getExerciseEntities(trainingPlans, user),
+								trainingPlans.getComment(),
+								true,
+								trainingPlans.getDays()
+						)
+				);
 
-    private static List<ExerciseEntity> getExerciseEntities(TrainingPlan t, User user) {
-        return t.getExercises().stream().map(e -> new ExerciseEntity(user, e.getName(), e.getSets(), e.getRepeats(), e.getComment())).toList();
-    }
+		}
+
+		private static List<ExerciseEntity> getExerciseEntities(TrainingPlan t, User user) {
+				return t.getExercises().stream().map(e -> new ExerciseEntity(user, e.getName(), e.getSets(), e.getRepeats(), e.getComment())).toList();
+		}
 }

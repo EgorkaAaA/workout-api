@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.egot.diplom.workout.dto.statistic.Dashboard;
 import ru.egot.diplom.workout.dto.statistic.DashboardData;
-import ru.egot.diplom.workout.enums.GraphType;
+import ru.egot.diplom.workout.entity.Type;
 import ru.egot.diplom.workout.services.DashboardService;
 
 import java.time.LocalDate;
@@ -19,7 +19,7 @@ public class MockDashboardServiceImpl implements DashboardService {
     public List<Dashboard> getDashboardStatistic() {
         return List.of(
                 new Dashboard(
-                        GraphType.SLEEP.getName(),
+                        Type.SLEEP.getName(),
                         createDashboardData()
                 )
         );

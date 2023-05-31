@@ -20,10 +20,11 @@ public class NotificationServiceImpl implements NotificationService {
 		@Override
 		public List<NotificationEntity> setNotificationForUser(List<Notification> notifications) throws UsernameNotFoundException {
 				List<NotificationEntity> entities = notifications.stream()
-						.map(n -> new NotificationEntity(
+						.map(
+								n -> new NotificationEntity(
 										new User(n.getUserId(), ""),
 										n.getType(),
-										true
+										n.getEnabled()
 								)
 						)
 						.toList();

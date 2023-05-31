@@ -98,44 +98,44 @@ paths:
           schema:
             type: "string"
             enum:
-              - "CARDIO"
-              - "OLYMPIC_WEIGHTLIFTING"
-              - "PLYOMETRICS"
-              - "POWERLIFTING"
-              - "STRENGTH"
-              - "STRETCHING"
-              - "STRONGMAN"
+              - "cardio"
+              - "olympic_weightlifting"
+              - "plyometrics"
+              - "powerlifting"
+              - "strength"
+              - "stretching"
+              - "strongman"
         - name: "muscle"
           in: "query"
           required: true
           schema:
             type: "string"
             enum:
-              - "ABDOMINALS"
-              - "ABDUCTORS"
-              - "ADDUCTORS"
-              - "BICEPS"
-              - "CALVES"
-              - "CHEST"
-              - "FOREARMS"
-              - "GLUTES"
-              - "HAMSTRINGS"
-              - "LATS"
-              - "LOWER_BACK"
-              - "MIDDLE_BACK"
-              - "NECK"
-              - "QUADRICEPS"
-              - "TRAPS"
-              - "TRICEPS"
+              - "abdominals"
+              - "abductors"
+              - "adductors"
+              - "biceps"
+              - "calves"
+              - "chest"
+              - "forearms"
+              - "glutes"
+              - "hamstrings"
+              - "lats"
+              - "lower_back"
+              - "middle_back"
+              - "neck"
+              - "quadriceps"
+              - "traps"
+              - "triceps"
         - name: "difficulty"
           in: "query"
           required: false
           schema:
             type: "string"
             enum:
-              - "BEGINNER"
-              - "INTERMEDIATE"
-              - "EXPERT"
+              - "beginner"
+              - "intermediate"
+              - "expert"
         - name: "offset"
           in: "query"
           required: false
@@ -235,14 +235,8 @@ components:
             $ref: '#/components/schemas/Exercises'
         days:
           type: array
-          enum:
-            - MONDAY
-            - TUESDAY
-            - WEDNESDAY
-            - THURSDAY
-            - FRIDAY
-            - SATURDAY
-            - SUNDAY
+          items:
+            $ref: '#/components/schemas/Days'
           example: [MONDAY, FRIDAY]
         comment:
           type: string
@@ -264,6 +258,16 @@ components:
         comment:
           type: string
           example: 'Do it'
+    Days:
+      type: string
+      enum:
+        - MONDAY
+        - TUESDAY
+        - WEDNESDAY
+        - THURSDAY
+        - FRIDAY
+        - SATURDAY
+        - SUNDAY
     TrainingApiResponse:
       type: "object"
       properties:
