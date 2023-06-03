@@ -1,9 +1,6 @@
 package ru.egot.diplom.workout.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,13 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.DayOfWeek;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "TRAINING_PLAN")
 public class TrainingPlanEntity extends BaseEntity {
 
     @JoinColumn(name = "USER_ID")
@@ -31,7 +28,7 @@ public class TrainingPlanEntity extends BaseEntity {
     private TrainingEntity training;
 
     @NotNull
-    @Column(name = "DAYS")
-    private List<DayOfWeek> days;
+    @Column(name = "DAY")
+    private DayOfWeek days;
 
 }

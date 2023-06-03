@@ -6,10 +6,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@NoArgsConstructor
 public class UserDto {
 
-		private String username;
+		private final String username;
 
-		private String password;
+		private final String password;
 }

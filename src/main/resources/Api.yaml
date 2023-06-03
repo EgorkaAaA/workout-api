@@ -12,6 +12,7 @@ tags:
   - name: Notification
   - name: Plan
   - name: Recommendations
+  - name: Training
 paths:
   /api/dashboard/{userId}:
     get:
@@ -64,27 +65,6 @@ paths:
                   $ref: '#/components/schemas/Notification'
         "404":
           description: 'User not found'
-  /api/plan/training:
-    post:
-      tags:
-       - Plan
-      summary: set plan of training for user
-      operationId: setTrainingPlan
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TrainingPlan'
-      responses:
-        "200":
-          description: training plan successfully set
-          content:
-            application/json:
-              schema:
-                type: object
-                items:
-                  $ref: '#/components/schemas/TrainingPlan'
   /recommendations:
     get:
       tags:
@@ -152,8 +132,385 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/components/schemas/TrainingApiResponse"
+  /public/trainings/plan:
+    post:
+      tags:
+        - Training
+        - Plan
+      summary: "POST public/trainings/plan"
+      operationId: "setTrainingPlanForUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrainingPlanDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/TrainingPlanEntity"
+  /public/trainings:
+    post:
+      tags:
+        - Training
+      summary: "POST public/trainings"
+      operationId: "createTraining"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrainingDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TrainingEntity"
+    get:
+      tags:
+        - Training
+      summary: "GET public/trainings"
+      operationId: "getAllTrainingByUserId"
+      parameters:
+        - name: "userId"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/TrainingEntity"
+  /public/trainings/{id}:
+    get:
+      tags:
+        - Training
+      summary: "GET public/trainings/{id}"
+      operationId: "getTrainingById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TrainingEntity"
+    put:
+      tags:
+        - Training
+      summary: "PUT public/trainings/{id}"
+      operationId: "updateTraining"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrainingDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TrainingEntity"
+  /public/trainings/{id}/exercises:
+    post:
+      tags:
+        - Training
+      summary: "POST public/trainings/{id}/exercises"
+      operationId: "createExercise"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExerciseDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ExerciseEntity"
+    get:
+      tags:
+        - Training
+      summary: "GET public/trainings/{id}/exercises"
+      operationId: "findAllExerciseByUserIdAndTrainingId"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "userId"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ExerciseEntity"
+  /public/trainings/exercises:
+    get:
+      tags:
+        - Training
+      summary: "GET public/trainings/exercises"
+      operationId: "findAllExerciseByUserId"
+      parameters:
+        - name: "userId"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ExerciseEntity"
+  /public/trainings/exercises/{exerciseId}:
+    put:
+      tags:
+        - Training
+      summary: "PUT public/trainings/exercises/{exerciseId}"
+      operationId: "updateExerciseById"
+      parameters:
+        - name: "exerciseId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExerciseDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ExerciseEntity"
 components:
   schemas:
+    TrainingPlanDto:
+      type: "object"
+      properties:
+        userId:
+          type: "string"
+        trainingId:
+          type: "integer"
+          format: "int64"
+        days:
+          type: "array"
+          items:
+            type: "string"
+            enum:
+              - "MONDAY"
+              - "TUESDAY"
+              - "WEDNESDAY"
+              - "THURSDAY"
+              - "FRIDAY"
+              - "SATURDAY"
+              - "SUNDAY"
+              - "ENUMS"
+    User:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        password:
+          type: "string"
+        id:
+          type: "integer"
+          format: "int64"
+        createdDate:
+          type: "string"
+          format: "date-time"
+        updatedDate:
+          type: "string"
+          format: "date-time"
+        deletedDate:
+          type: "string"
+          format: "date-time"
+    ExerciseEntity:
+      type: "object"
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        trainingEntities:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/TrainingEntity"
+        name:
+          type: "string"
+        sets:
+          type: "integer"
+          format: "int32"
+        repeats:
+          type: "integer"
+          format: "int32"
+        time:
+          type: "string"
+          format: "partial-time"
+        weight:
+          type: "integer"
+          format: "int32"
+        comment:
+          type: "string"
+        id:
+          type: "integer"
+          format: "int64"
+        createdDate:
+          type: "string"
+          format: "date-time"
+        updatedDate:
+          type: "string"
+          format: "date-time"
+        deletedDate:
+          type: "string"
+          format: "date-time"
+    TrainingEntity:
+      type: "object"
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        exercises:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ExerciseEntity"
+        comment:
+          type: "string"
+        enabled:
+          type: "boolean"
+        id:
+          type: "integer"
+          format: "int64"
+        createdDate:
+          type: "string"
+          format: "date-time"
+        updatedDate:
+          type: "string"
+          format: "date-time"
+        deletedDate:
+          type: "string"
+          format: "date-time"
+    TrainingPlanEntity:
+      type: "object"
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        training:
+          $ref: "#/components/schemas/TrainingEntity"
+        days:
+          type: "string"
+          enum:
+            - "MONDAY"
+            - "TUESDAY"
+            - "WEDNESDAY"
+            - "THURSDAY"
+            - "FRIDAY"
+            - "SATURDAY"
+            - "SUNDAY"
+            - "ENUMS"
+        id:
+          type: "integer"
+          format: "int64"
+        createdDate:
+          type: "string"
+          format: "date-time"
+        updatedDate:
+          type: "string"
+          format: "date-time"
+        deletedDate:
+          type: "string"
+          format: "date-time"
+    ExerciseDto:
+      type: "object"
+      properties:
+        userId:
+          type: "string"
+        exerciseId:
+          type: "integer"
+          format: "int64"
+        name:
+          type: "string"
+        sets:
+          type: "integer"
+          format: "int32"
+        repeats:
+          type: "integer"
+          format: "int32"
+        time:
+          type: "string"
+          format: "partial-time"
+        wight:
+          type: "integer"
+          format: "int32"
+        comment:
+          type: "string"
+        trainingId:
+          type: "integer"
+          format: "int64"
+    TrainingDto:
+      type: "object"
+      properties:
+        userId:
+          type: "string"
+        exerciseDtos:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ExerciseDto"
+        comment:
+          type: "string"
+        enabled:
+          type: "boolean"
     Dashboard:
       required:
         - data
@@ -220,54 +577,6 @@ components:
         userId:
           type: string
           example: '@Egor'
-    TrainingPlan:
-      type: object
-      required:
-        - userId
-        - exercises
-      properties:
-        userId:
-          type: string
-          example: '@Egor'
-        exercises:
-          type: object
-          items:
-            $ref: '#/components/schemas/Exercises'
-        days:
-          type: array
-          items:
-            $ref: '#/components/schemas/Days'
-          example: [MONDAY, FRIDAY]
-        comment:
-          type: string
-          example: 'do it'
-    Exercises:
-      type: object
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          example: 'Push ups'
-        sets:
-          type: number
-          example: 10
-        repeats:
-          type: number
-          example: 20
-        comment:
-          type: string
-          example: 'Do it'
-    Days:
-      type: string
-      enum:
-        - MONDAY
-        - TUESDAY
-        - WEDNESDAY
-        - THURSDAY
-        - FRIDAY
-        - SATURDAY
-        - SUNDAY
     TrainingApiResponse:
       type: "object"
       properties:

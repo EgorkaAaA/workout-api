@@ -1,14 +1,16 @@
 package ru.egot.diplom.workout.services.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.egot.diplom.workout.dto.plan.TrainingPlan;
-import ru.egot.diplom.workout.entity.ExerciseEntity;
+import ru.egot.diplom.workout.dto.plan.TrainingPlanDto;
 import ru.egot.diplom.workout.entity.TrainingPlanEntity;
 import ru.egot.diplom.workout.entity.User;
 import ru.egot.diplom.workout.repositories.TrainingPlanRepo;
 import ru.egot.diplom.workout.services.TrainingPlanService;
+import ru.egot.diplom.workout.services.TrainingService;
+import ru.egot.diplom.workout.services.UserService;
 
 import java.util.List;
 
@@ -18,22 +20,28 @@ public class TrainingPlanServiceImpl implements TrainingPlanService {
 
 		private final TrainingPlanRepo trainingPlanRepo;
 
+		private final TrainingService trainingService;
+
+		private final UserService userService;
+
+		@SneakyThrows
 		@Override
-		public TrainingPlanEntity setTrainingPlanForUser(TrainingPlan trainingPlans) throws UsernameNotFoundException {
-				final User user = new User(trainingPlans.getUserId(), "");
-				return trainingPlanRepo.save(
-						new TrainingPlanEntity(
-								user,
-								getExerciseEntities(trainingPlans, user),
-								trainingPlans.getComment(),
-								true,
-								trainingPlans.getDays()
-						)
+		public List<TrainingPlanEntity> setTrainingPlanForUser(TrainingPlanDto trainingPlan) throws UsernameNotFoundException {
+				final User user = userService.getUserByName(trainingPlan.getUserId());
+				return trainingPlanRepo.saveAll(
+						trainingPlan.getDays()
+								.stream()
+								.map(
+										day ->
+												new TrainingPlanEntity(
+														user,
+														trainingService.getById(trainingPlan.getTrainingId()),
+														day
+												)
+								)
+								.toList()
 				);
 
 		}
 
-		private static List<ExerciseEntity> getExerciseEntities(TrainingPlan t, User user) {
-				return t.getExercises().stream().map(e -> new ExerciseEntity(user, e.getName(), e.getSets(), e.getRepeats(), e.getComment())).toList();
-		}
 }

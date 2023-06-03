@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+@Table(name = "TRAINING")
 public class TrainingEntity extends BaseEntity {
 
 	@NotNull

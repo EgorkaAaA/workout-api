@@ -8,11 +8,11 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class TrainingPlan {
+public class TrainingPlanDto {
 
     private final String userId;
 
-    private final String trainingId;
+    private final Long trainingId;
 
     private final List<DayOfWeek> days;
 

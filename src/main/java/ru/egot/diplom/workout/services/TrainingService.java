@@ -14,6 +14,6 @@ public interface TrainingService {
 
     List<TrainingEntity> getAllTrainingByUserId(String userId);
 
-    TrainingEntity getById(String trainingId) throws NotFoundException;
+    TrainingEntity getById(Long trainingId) throws NotFoundException;
 
 }

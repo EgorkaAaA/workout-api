@@ -13,12 +13,12 @@ import java.util.List;
 @Builder(toBuilder = true)
 public class TrainingDto {
 
-    private String userId;
+    private final String userId;
 
-    private List<Exercise> exercises;
+    private final List<ExerciseDto> exerciseDtos;
 
-    private String comment;
+    private final String comment;
 
-    private Boolean enabled;
+    private final Boolean enabled;
 
 }
