@@ -11,7 +11,7 @@ import ru.egot.diplom.workout.services.TrainingPlanService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/plan/training")
+@RequestMapping("/public/plan/training")
 public class TrainingPlanController {
 
 	private final TrainingPlanService trainingPlanService;

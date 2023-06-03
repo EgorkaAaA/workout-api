@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/recommendations")
+@RequestMapping("/public/recommendations")
 public class TrainingApiController {
 
 		private final TrainingApiSender sender;

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import ru.egot.diplom.workout.services.UserService;
@@ -20,21 +21,21 @@ public class SecurityConfig {
 
 		@Bean
 		SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-				return http.csrf()
-						.disable()
-						.cors()
-						.disable()
+				return http.csrf().disable()
+						.cors().disable()
 						.userDetailsService(userService)
 						.authenticationProvider(getAuthProvider())
 						.authorizeHttpRequests(
 								request -> request
-										.requestMatchers("/login", "/registration").permitAll()
+										.requestMatchers("/registration", "/public/**").permitAll()
 										.anyRequest().authenticated()
 						)
-						.formLogin()
-						.loginPage("/login")
-						.usernameParameter("username")
-						.and()
+						.formLogin((form) -> form
+										.permitAll()
+										.disable()
+//								.loginPage("/login")
+						)
+						.logout(LogoutConfigurer::permitAll)
 						.build();
 		}
 
