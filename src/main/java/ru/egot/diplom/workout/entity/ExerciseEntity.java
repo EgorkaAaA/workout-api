@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalTime;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,8 +33,13 @@ public class ExerciseEntity extends BaseEntity {
     private Integer sets;
 
     @Column(name = "REPEATS")
-    @NotNull
     private Integer repeats;
+
+    @Column(name = "REPEATS")
+    private LocalTime time;
+
+    @Column(name = "REPEATS")
+    private Integer weight;
 
     @Column(name = "COMMENT")
     private String comment;

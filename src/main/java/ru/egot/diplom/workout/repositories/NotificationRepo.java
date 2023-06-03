@@ -1,12 +1,11 @@
 package ru.egot.diplom.workout.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import ru.egot.diplom.workout.entity.NotificationEntity;
 import ru.egot.diplom.workout.entity.User;
 
 import java.util.List;
 
-public interface NotificationRepo extends JpaRepository<NotificationEntity, Long> {
+public interface NotificationRepo extends BaseRepo<NotificationEntity> {
 
 		List<NotificationEntity> findAllByUserAndEnabledTrueAndDeletedDateIsNull(User user);
 

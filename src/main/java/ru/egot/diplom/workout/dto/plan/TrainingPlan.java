@@ -12,9 +12,8 @@ public class TrainingPlan {
 
     private final String userId;
 
-    private final List<Exercise> exercises;
+    private final String trainingId;
 
     private final List<DayOfWeek> days;
 
-    private final String comment;
 }

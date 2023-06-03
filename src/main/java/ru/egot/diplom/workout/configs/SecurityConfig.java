@@ -30,10 +30,9 @@ public class SecurityConfig {
 										.requestMatchers("/registration", "/public/**").permitAll()
 										.anyRequest().authenticated()
 						)
-						.formLogin((form) -> form
-										.permitAll()
+						.formLogin(
+								(form) -> form.permitAll()
 										.disable()
-//								.loginPage("/login")
 						)
 						.logout(LogoutConfigurer::permitAll)
 						.build();

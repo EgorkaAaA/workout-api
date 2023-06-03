@@ -1,18 +1,33 @@
 package ru.egot.diplom.workout.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class TrainingEntity extends TrainingBase {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
+public class TrainingEntity extends BaseEntity {
 
-		@Column(name = "DATE")
-		private LocalDateTime date;
+	@NotNull
+	@JoinColumn(name = "USER_ID")
+	@ManyToOne
+	protected User user;
+
+	@NotNull
+	@ManyToMany
+	@Column(name = "EXERCISES")
+	protected List<ExerciseEntity> exercises;
+
+	@Column(name = "COMMENT")
+	protected String comment;
+
+	@Column(name = "ENABLED")
+	protected boolean enabled;
 
 }
