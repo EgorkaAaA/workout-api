@@ -73,6 +73,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 				}
 				return new ExerciseEntity().setUser(userService.getUserByName(exerciseDto.getUserId()))
 						.setTrainingEntities(
+								exerciseDto.getTrainingId() == null ? null :
 								trainingRepo.findByIdAndDeletedDateIsNull(exerciseDto.getTrainingId())
 										.map(Collections::singletonList)
 										.orElseThrow(() -> new NotFoundException("Training with id: %s not found".formatted(exerciseDto.getTrainingId())))
