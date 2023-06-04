@@ -23,9 +23,7 @@ public class DashboardController {
     @GetMapping
     @CrossOrigin
     public ResponseEntity<List<Dashboard>> getGraph() {
-        log.info("GetRequest");
         List<Dashboard> dashboardStatistic = dashboardService.getDashboardStatistic();
-        log.info("Answer: {}", dashboardStatistic);
         return ResponseEntity.ok(dashboardStatistic);
     }
 

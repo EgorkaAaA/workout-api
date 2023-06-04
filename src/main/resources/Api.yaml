@@ -525,7 +525,7 @@ components:
       properties:
         userId:
           type: "string"
-        exerciseDtos:
+        exerciseDtoList:
           type: "array"
           items:
             $ref: "#/components/schemas/ExerciseDto"

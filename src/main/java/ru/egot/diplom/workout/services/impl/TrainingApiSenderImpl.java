@@ -19,39 +19,39 @@ import java.util.*;
 @RequiredArgsConstructor
 public class TrainingApiSenderImpl implements TrainingApiSender {
 
-		private final SenderService senderService;
+    private final SenderService senderService;
 
-		@Value("${api.training.url}")
-		private String url;
+    @Value("${api.training.url}")
+    private String url;
 
-		@Value("${api.training.key}")
-		private String apiKey;
+    @Value("${api.training.key}")
+    private String apiKey;
 
-		@SneakyThrows
-		@Override
-		public List<TrainingApiResponse> getExercises(TrainingApiType type, TrainingApiMuscle muscle, TrainingApiDifficulty difficulty, Integer offset) {
-				Map<String, String> uriVariables = new HashMap<>();
-				if (type != null) {
-						uriVariables.put("type", type.getName());
-				}
-				if (difficulty != null) {
-						uriVariables.put("difficulty", difficulty.getName());
-				}
-				if (muscle != null) {
-						uriVariables.put("muscle", muscle.getName());
-				}
-				uriVariables.put("offset", offset.toString());
-				HttpHeaders httpHeaders = new HttpHeaders();
-				httpHeaders.set("X-Api-Key", apiKey);
-				return Arrays.stream(
-								Objects.requireNonNull(
-										senderService.get(
-														url,
-														TrainingApiResponse[].class,
-														new HttpEntity<>(httpHeaders),
-														uriVariables
-												)
-												.getBody()))
-						.toList();
-		}
+    @SneakyThrows
+    @Override
+    public List<TrainingApiResponse> getExercises(TrainingApiType type, TrainingApiMuscle muscle, TrainingApiDifficulty difficulty, Integer offset) {
+        Map<String, String> uriVariables = new HashMap<>();
+        if (type != null) {
+            uriVariables.put("type", type.getName());
+        }
+        if (difficulty != null) {
+            uriVariables.put("difficulty", difficulty.getName());
+        }
+        if (muscle != null) {
+            uriVariables.put("muscle", muscle.getName());
+        }
+        uriVariables.put("offset", offset.toString());
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("X-Api-Key", apiKey);
+        return Arrays.stream(
+                Objects.requireNonNull(
+                        senderService.get(
+                                url,
+                                TrainingApiResponse[].class,
+                                new HttpEntity<>(httpHeaders),
+                                uriVariables
+                        )
+                                .getBody()))
+                .toList();
+    }
 }
