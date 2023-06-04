@@ -1,6 +1,7 @@
 package ru.egot.diplom.workout.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,8 @@ public class NotificationController {
 		private final NotificationService notificationService;
 
 		@PostMapping
-		public List<NotificationEntity> setNotifications(@RequestBody List<Notification> notification) {
-				return notificationService.setNotificationForUser(notification);
+		public ResponseEntity<List<NotificationEntity>> setNotifications(@RequestBody List<Notification> notification) {
+				return ResponseEntity.ok(notificationService.setNotificationForUser(notification));
 		}
 
 }

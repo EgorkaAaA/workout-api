@@ -10,10 +10,10 @@ import java.util.List;
 @AllArgsConstructor
 public class TrainingPlanDto {
 
-    private final String userId;
+    private String userId;
 
-    private final Long trainingId;
+    private Long trainingId;
 
-    private final List<DayOfWeek> days;
+    private List<DayOfWeek> days;
 
 }

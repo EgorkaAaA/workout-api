@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class CaloriesStatisticImpl implements Statistic {
 
-    private final CaloriesEntity caloriesEntity;
+    private CaloriesEntity caloriesEntity;
 
     public CaloriesStatisticImpl(CaloriesEntity caloriesEntity) {
         this.caloriesEntity = caloriesEntity;

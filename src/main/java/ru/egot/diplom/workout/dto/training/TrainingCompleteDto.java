@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TrainingCompleteDto {
 
-		private final String userId;
+    private String userId;
 
-		private final Long trainingId;
+    private Long trainingId;
 
-		private final LocalDateTime days;
+    private LocalDateTime days;
 
 }

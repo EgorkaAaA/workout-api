@@ -9,8 +9,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Dashboard {
 
-    private final String type;
+    private String type;
 
-    private final List<DashboardData> data;
+    private List<DashboardData> data;
 
 }

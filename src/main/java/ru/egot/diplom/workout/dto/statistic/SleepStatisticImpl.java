@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class SleepStatisticImpl implements Statistic {
 
-    private final SleepEntity sleepEntity;
+    private SleepEntity sleepEntity;
 
     public SleepStatisticImpl(SleepEntity sleepEntity) {
         this.sleepEntity = sleepEntity;

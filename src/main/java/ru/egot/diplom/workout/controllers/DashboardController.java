@@ -1,6 +1,7 @@
 package ru.egot.diplom.workout.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +18,8 @@ public class DashboardController {
     private final DashboardService dashboardService;
 
     @GetMapping()
-    public List<Dashboard> getGraph() {
-        return dashboardService.getDashboardStatistic();
+    public ResponseEntity<List<Dashboard>> getGraph() {
+        return ResponseEntity.ok(dashboardService.getDashboardStatistic());
     }
 
 }
