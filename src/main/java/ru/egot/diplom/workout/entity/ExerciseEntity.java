@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -44,7 +43,7 @@ public class ExerciseEntity extends BaseEntity {
     private Integer repeats;
 
     @Column(name = "TIME")
-    private LocalTime time;
+    private String time;
 
     @Column(name = "WEIGHT")
     private Integer weight;
