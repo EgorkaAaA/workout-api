@@ -12,7 +12,7 @@ import ru.egot.diplom.workout.services.DashboardService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dashboard")
+@RequestMapping("/public/dashboard")
 @RequiredArgsConstructor
 @Slf4j
 public class DashboardController {
