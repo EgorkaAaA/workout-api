@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.LocalTime;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,7 +23,7 @@ public class ExerciseDto {
 
     private Integer repeats;
 
-    private LocalTime time;
+    private String time;
 
     private Integer wight;
 

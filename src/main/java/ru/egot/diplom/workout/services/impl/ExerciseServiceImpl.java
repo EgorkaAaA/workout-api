@@ -10,6 +10,7 @@ import ru.egot.diplom.workout.repositories.TrainingRepo;
 import ru.egot.diplom.workout.services.ExerciseService;
 import ru.egot.diplom.workout.services.UserService;
 
+import java.time.LocalTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 						.setSets(exerciseDto.getSets())
 						.setRepeats(exerciseDto.getRepeats())
 						.setWeight(exerciseDto.getWight())
-						.setTime(exerciseDto.getTime())
+						.setTime(LocalTime.parse(exerciseDto.getTime()))
 						.setComment(exerciseDto.getComment());
 		}
 
@@ -80,7 +81,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 						.setSets(exerciseDto.getSets())
 						.setRepeats(exerciseDto.getRepeats())
 						.setWeight(exerciseDto.getWight())
-						.setTime(exerciseDto.getTime())
+						.setTime(LocalTime.parse(exerciseDto.getTime()))
 						.setComment(exerciseDto.getComment());
 		}
 
