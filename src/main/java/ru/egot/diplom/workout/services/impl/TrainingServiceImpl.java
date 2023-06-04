@@ -27,7 +27,7 @@ public class TrainingServiceImpl implements TrainingService {
 				return trainingRepo.save(
 						new TrainingEntity().toBuilder()
 								.user(userService.getUserByName(trainingDto.getUserId()))
-								.exercises(exerciseService.createExerciseList(trainingDto.getExerciseDtos()))
+								.exercises(exerciseService.createExerciseList(trainingDto.getExerciseDtoList()))
 								.comment(trainingDto.getComment())
 								.enabled(trainingDto.getEnabled())
 								.build()
@@ -40,7 +40,7 @@ public class TrainingServiceImpl implements TrainingService {
 						.orElseThrow(() -> new NotFoundException("Training with id: %s not found".formatted(trainingId)));
 				trainingEntity.setComment(trainingDto.getComment());
 				trainingEntity.setEnabled(trainingDto.getEnabled());
-				trainingEntity.setExercises(exerciseService.createExerciseList(trainingDto.getExerciseDtos()));
+				trainingEntity.setExercises(exerciseService.createExerciseList(trainingDto.getExerciseDtoList()));
 				return trainingRepo.save(trainingEntity);
 		}
 

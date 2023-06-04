@@ -7,6 +7,8 @@ info:
 servers:
   - url: https://virtserver.swaggerhub.com/SuperMegaTeamForDev/Workout/1.0.0
     description: SwaggerHub API Auto Mocking
+  - url: http://79.133.181.7:8080/api
+    description: Develop server
 tags:
   - name: Dashboard
   - name: Notification
@@ -14,7 +16,7 @@ tags:
   - name: Recommendations
   - name: Training
 paths:
-  /api/dashboard/{userId}:
+  /dashboard/{userId}:
     get:
       tags:
         - Dashboard
@@ -42,7 +44,7 @@ paths:
           description: bad input parameter
         "404":
           description: type not found or user not found
-  /api/notification:
+  /notification:
     post:
       tags:
       - Notification
@@ -154,6 +156,26 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/components/schemas/TrainingPlanEntity"
+  /public/trainings/complete:
+    post:
+      tags:
+        - Training
+        - Plan
+      summary: "POST public/trainings/complete"
+      operationId: "setTrainingCompleteForUser"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrainingCompleteDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TrainingCompleteEntity"
   /public/trainings:
     post:
       tags:
@@ -592,3 +614,36 @@ components:
           type: "string"
         instructions:
           type: "string"
+    TrainingCompleteDto:
+      type: "object"
+      properties:
+        userId:
+          type: "string"
+        trainingId:
+          type: "integer"
+          format: "int64"
+        days:
+          type: "string"
+          format: "date-time"
+    TrainingCompleteEntity:
+      type: "object"
+      properties:
+        userId:
+          $ref: "#/components/schemas/User"
+        trainingId:
+          $ref: "#/components/schemas/TrainingEntity"
+        date:
+          type: "string"
+          format: "date-time"
+        id:
+          type: "integer"
+          format: "int64"
+        createdDate:
+          type: "string"
+          format: "date-time"
+        updatedDate:
+          type: "string"
+          format: "date-time"
+        deletedDate:
+          type: "string"
+          format: "date-time"

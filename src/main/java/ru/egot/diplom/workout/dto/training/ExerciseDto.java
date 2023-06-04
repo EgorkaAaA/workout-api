@@ -2,6 +2,7 @@ package ru.egot.diplom.workout.dto.training;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -11,23 +12,24 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 @Accessors(chain = true)
+@NoArgsConstructor
 public class ExerciseDto {
 
-    private final String userId;
+    private String userId;
 
-    private final Long exerciseId;
+    private Long exerciseId;
 
-    private final String name;
+    private String name;
 
-    private final Integer sets;
+    private Integer sets;
 
-    private final Integer repeats;
+    private Integer repeats;
 
-    private final LocalTime time;
+    private LocalTime time;
 
-    private final Integer wight;
+    private Integer wight;
 
-    private final String comment;
+    private String comment;
 
     private Long trainingId;
 }

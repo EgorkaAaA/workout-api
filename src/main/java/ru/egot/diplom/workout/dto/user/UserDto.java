@@ -5,10 +5,11 @@ import lombok.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder(toBuilder = true)
 public class UserDto {
 
-		private final String username;
+		private String username;
 
-		private final String password;
+		private String password;
 }

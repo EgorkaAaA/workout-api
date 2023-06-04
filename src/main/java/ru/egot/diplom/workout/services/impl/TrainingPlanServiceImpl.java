@@ -4,9 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.egot.diplom.workout.dto.plan.TrainingPlanDto;
+import ru.egot.diplom.workout.dto.training.TrainingCompleteDto;
+import ru.egot.diplom.workout.dto.training.TrainingPlanDto;
+import ru.egot.diplom.workout.entity.TrainingCompleteEntity;
 import ru.egot.diplom.workout.entity.TrainingPlanEntity;
 import ru.egot.diplom.workout.entity.User;
+import ru.egot.diplom.workout.repositories.TrainingCompleteRepo;
 import ru.egot.diplom.workout.repositories.TrainingPlanRepo;
 import ru.egot.diplom.workout.services.TrainingPlanService;
 import ru.egot.diplom.workout.services.TrainingService;
@@ -19,6 +22,8 @@ import java.util.List;
 public class TrainingPlanServiceImpl implements TrainingPlanService {
 
 		private final TrainingPlanRepo trainingPlanRepo;
+
+		private final TrainingCompleteRepo trainingCompleteRepo;
 
 		private final TrainingService trainingService;
 
@@ -41,7 +46,18 @@ public class TrainingPlanServiceImpl implements TrainingPlanService {
 								)
 								.toList()
 				);
+		}
 
+		@Override
+		public TrainingCompleteEntity setTrainingCompleteForUser(TrainingCompleteDto trainingCompleteDto) throws UsernameNotFoundException {
+				final User user = userService.getUserByName(trainingCompleteDto.getUserId());
+				return trainingCompleteRepo.save(
+						new TrainingCompleteEntity(
+								user,
+								trainingService.getById(trainingCompleteDto.getTrainingId()),
+								trainingCompleteDto.getDays()
+						)
+				);
 		}
 
 }

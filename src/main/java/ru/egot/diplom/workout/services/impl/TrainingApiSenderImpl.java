@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiDifficulty;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiMuscle;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiResponse;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiType;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiDifficulty;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiMuscle;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiResponse;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiType;
 import ru.egot.diplom.workout.services.SenderService;
 import ru.egot.diplom.workout.services.TrainingApiSender;
 

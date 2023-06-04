@@ -1,4 +1,4 @@
-package ru.egot.diplom.workout.dto.plan.training.api;
+package ru.egot.diplom.workout.dto.training.api;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

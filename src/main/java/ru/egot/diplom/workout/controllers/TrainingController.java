@@ -2,10 +2,12 @@ package ru.egot.diplom.workout.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.egot.diplom.workout.dto.plan.TrainingPlanDto;
+import ru.egot.diplom.workout.dto.training.TrainingCompleteDto;
+import ru.egot.diplom.workout.dto.training.TrainingPlanDto;
 import ru.egot.diplom.workout.dto.training.ExerciseDto;
 import ru.egot.diplom.workout.dto.training.TrainingDto;
 import ru.egot.diplom.workout.entity.ExerciseEntity;
+import ru.egot.diplom.workout.entity.TrainingCompleteEntity;
 import ru.egot.diplom.workout.entity.TrainingEntity;
 import ru.egot.diplom.workout.entity.TrainingPlanEntity;
 import ru.egot.diplom.workout.services.ExerciseService;
@@ -28,6 +30,11 @@ public class TrainingController {
 		@PostMapping("/plan")
 		public List<TrainingPlanEntity> setTrainingPlanForUser(@RequestBody TrainingPlanDto trainingPlan) {
 				return trainingPlanService.setTrainingPlanForUser(trainingPlan);
+		}
+
+		@PostMapping("/complete")
+		public TrainingCompleteEntity setTrainingCompleteForUser(@RequestBody TrainingCompleteDto trainingCompleteDto) {
+				return trainingPlanService.setTrainingCompleteForUser(trainingCompleteDto);
 		}
 
 		@PostMapping

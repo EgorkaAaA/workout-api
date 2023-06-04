@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiDifficulty;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiMuscle;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiResponse;
-import ru.egot.diplom.workout.dto.plan.training.api.TrainingApiType;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiDifficulty;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiMuscle;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiResponse;
+import ru.egot.diplom.workout.dto.training.api.TrainingApiType;
 import ru.egot.diplom.workout.services.TrainingApiSender;
 
 import java.util.List;

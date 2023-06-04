@@ -28,7 +28,8 @@ public class TrainingPlanEntity extends BaseEntity {
     private TrainingEntity training;
 
     @NotNull
-    @Column(name = "DAY")
+    @Column(name = "DAY_OF_WEEK")
+    @Enumerated(EnumType.STRING)
     private DayOfWeek days;
 
 }

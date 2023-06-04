@@ -1,9 +1,6 @@
 package ru.egot.diplom.workout.dto.training;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,14 +8,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@NoArgsConstructor
 public class TrainingDto {
 
-    private final String userId;
+    private String userId;
 
-    private final List<ExerciseDto> exerciseDtos;
+    private List<ExerciseDto> exerciseDtoList;
 
-    private final String comment;
+    private String comment;
 
-    private final Boolean enabled;
+    private Boolean enabled;
 
 }

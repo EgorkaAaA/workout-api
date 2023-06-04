@@ -27,8 +27,8 @@ public class SecurityConfig {
 						.authenticationProvider(getAuthProvider())
 						.authorizeHttpRequests(
 								request -> request
-										.requestMatchers("/registration", "/public/**").permitAll()
-										.anyRequest().authenticated()
+										.requestMatchers("/registration/**", "/public/**").permitAll()
+										.anyRequest().permitAll()
 						)
 						.formLogin(
 								(form) -> form.permitAll()

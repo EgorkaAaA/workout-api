@@ -1,4 +1,4 @@
-package ru.egot.diplom.workout.dto.plan;
+package ru.egot.diplom.workout.dto.training;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
