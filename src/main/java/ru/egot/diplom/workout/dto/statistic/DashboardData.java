@@ -13,11 +13,11 @@ public class DashboardData {
 
     private String date;
 
-    private int plan;
+    private double plan;
 
-    private int actual;
+    private double actual;
 
-    private int planAvg;
+    private double planAvg;
 
-    private int actualAvg;
+    private double actualAvg;
 }

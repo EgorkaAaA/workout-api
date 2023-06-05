@@ -22,7 +22,10 @@ public class TrainingEntity extends BaseEntity {
 
 	@NotNull
 	@ManyToMany
-	@Column(name = "EXERCISES")
+	@JoinTable(
+			name = "TRAINING_EXERCISE",
+			joinColumns = @JoinColumn(name = "TRAINING_ID"),
+			inverseJoinColumns = @JoinColumn(name = "EXERCISE_ID"))
 	protected List<ExerciseEntity> exercises;
 
 	@Column(name = "NAME")

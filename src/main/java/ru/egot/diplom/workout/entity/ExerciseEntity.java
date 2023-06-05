@@ -8,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,13 +21,6 @@ public class ExerciseEntity extends BaseEntity {
     @NotNull
     @ManyToOne
     private User user;
-
-    @ManyToMany
-    @JoinTable(
-        name = "TRAINING_EXERCISE",
-        joinColumns = @JoinColumn(name = "EXERCISE_ID"),
-        inverseJoinColumns = @JoinColumn(name = "TRAINING_ID"))
-    private List<TrainingEntity> trainingEntities;
 
     @Column(name = "NAME")
     @NotNull
