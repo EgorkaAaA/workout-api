@@ -15,5 +15,5 @@ public interface ExerciseRepo extends BaseRepo<ExerciseEntity> {
 		@Query("select t from ExerciseEntity t join TrainingEntity u on u.id = :trainingId and t.user.name = :username and t.deletedDate is null")
 		List<ExerciseEntity> findAllByUserAndTrainingEntities(@Param("username") String username, @Param("trainingId") Long trainingId);
 
-		Optional<ExerciseEntity> findByIdAndUserAndDeletedDateIsNull(Long id, User user)
+	Optional<ExerciseEntity> findByIdAndUserAndDeletedDateIsNull(Long id, User user);
 }
