@@ -1,5 +1,6 @@
 package ru.egot.diplom.workout.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,13 +27,16 @@ public abstract class BaseEntity {
 
     @CreatedDate
     @Column(name = "CREATED_DATE")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     protected LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(name = "UPDATED_DATE")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     protected LocalDateTime updatedDate;
 
     @Column(name = "DELETED_DATE")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     protected LocalDateTime deletedDate;
 
 }
