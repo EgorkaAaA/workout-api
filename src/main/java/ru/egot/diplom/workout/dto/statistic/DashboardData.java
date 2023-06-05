@@ -1,14 +1,14 @@
 package ru.egot.diplom.workout.dto.statistic;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+@Accessors(chain = true)
 public class DashboardData {
 
     private String date;

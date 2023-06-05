@@ -25,8 +25,13 @@ public class TrainingEntity extends BaseEntity {
 	@Column(name = "EXERCISES")
 	protected List<ExerciseEntity> exercises;
 
+	@Column(name = "NAME")
+	@NotNull
+	protected String name;
+
 	@Column(name = "COMMENT")
 	protected String comment;
+
 
 	@Column(name = "ENABLED")
 	protected boolean enabled;

@@ -15,6 +15,8 @@ public class TrainingDto {
 
     private List<ExerciseDto> exerciseDtoList;
 
+    private String name;
+
     private String comment;
 
     private Boolean enabled;
