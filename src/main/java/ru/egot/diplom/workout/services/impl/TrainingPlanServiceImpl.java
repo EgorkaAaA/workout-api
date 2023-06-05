@@ -40,7 +40,7 @@ public class TrainingPlanServiceImpl implements TrainingPlanService {
 										day ->
 												new TrainingPlanEntity(
 														user,
-														trainingService.getById(trainingPlan.getTrainingId()),
+														trainingService.getByIdAndUser(trainingPlan.getTrainingId()),
 														day
 												)
 								)
@@ -54,7 +54,7 @@ public class TrainingPlanServiceImpl implements TrainingPlanService {
 				return trainingCompleteRepo.save(
 						new TrainingCompleteEntity(
 								user,
-								trainingService.getById(trainingCompleteDto.getTrainingId()),
+								trainingService.getByIdAndUser(trainingCompleteDto.getTrainingId()),
 								trainingCompleteDto.getDays()
 						)
 				);

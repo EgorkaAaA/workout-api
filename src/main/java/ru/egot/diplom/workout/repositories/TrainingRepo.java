@@ -10,5 +10,5 @@ public interface TrainingRepo extends BaseRepo<TrainingEntity> {
 
     List<TrainingEntity> findAllByUserAndEnabledIsTrueAndDeletedDateIsNullOrderByCreatedDateDesc(User user);
 
-    Optional<TrainingEntity> findByIdAndDeletedDateIsNull(Long id);
+    Optional<TrainingEntity> findByIdAndUserAndDeletedDateIsNull(Long id, User user);
 }

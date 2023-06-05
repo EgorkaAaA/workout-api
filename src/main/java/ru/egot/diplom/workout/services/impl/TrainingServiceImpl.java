@@ -50,8 +50,8 @@ public class TrainingServiceImpl implements TrainingService {
 		}
 
 		@Override
-		public TrainingEntity getById(Long trainingId) throws NotFoundException {
-				return trainingRepo.findByIdAndDeletedDateIsNull(trainingId)
+		public TrainingEntity getByIdAndUser(Long trainingId, String username) throws NotFoundException {
+				return trainingRepo.findByIdAndUserAndDeletedDateIsNull(trainingId, userService.getUserByName(username))
 						.orElseThrow(() -> new NotFoundException("Training with id: %s not found".formatted(trainingId)));
 		}
 

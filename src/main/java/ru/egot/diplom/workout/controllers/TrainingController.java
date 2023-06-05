@@ -45,13 +45,13 @@ public class TrainingController {
 		}
 
 		@GetMapping("/{id}")
-		public ResponseEntity<TrainingEntity> getTrainingById(@PathVariable Long id) {
-				return ResponseEntity.ok(trainingService.getById(id));
+		public ResponseEntity<TrainingEntity> getTrainingById(@PathVariable Long id, @RequestParam String username) {
+				return ResponseEntity.ok(trainingService.getByIdAndUser(id, username));
 		}
 
 		@GetMapping
-		public ResponseEntity<List<TrainingEntity>> getAllTrainingByUserId(@RequestParam String userId) {
-				return ResponseEntity.ok(trainingService.getAllTrainingByUserId(userId));
+		public ResponseEntity<List<TrainingEntity>> getAllTrainingByUserId(@RequestParam String username) {
+				return ResponseEntity.ok(trainingService.getAllTrainingByUserId(username));
 		}
 
 		@PutMapping("/{id}")
@@ -69,9 +69,14 @@ public class TrainingController {
 				return ResponseEntity.ok(exerciseService.findAllByUserId(userId));
 		}
 
+		@GetMapping("/exercises/{id}")
+		public ResponseEntity<ExerciseEntity> findExerciseByUserId(@PathVariable Long id, @RequestParam String username) {
+				return ResponseEntity.ok(exerciseService.findByIdAndUser(id, username));
+		}
+
 		@GetMapping("/{id}/exercises")
-		public ResponseEntity<List<ExerciseEntity>> findAllExerciseByUserIdAndTrainingId(@PathVariable(name = "id") Long trainingId, @RequestParam String userId) {
-				return ResponseEntity.ok(exerciseService.findAllByUserIdAndTrainingId(userId, trainingId));
+		public ResponseEntity<List<ExerciseEntity>> findAllExerciseByUserIdAndTrainingId(@PathVariable(name = "id") Long trainingId, @RequestParam String username) {
+				return ResponseEntity.ok(exerciseService.findAllByUserIdAndTrainingId(username, trainingId));
 		}
 
 		@PutMapping("/exercises/{exerciseId}")

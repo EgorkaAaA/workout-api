@@ -15,7 +15,7 @@ public interface ExerciseService {
 
 		List<ExerciseEntity> findAllByUserIdAndTrainingId(String userId, Long trainingId);
 
-		ExerciseEntity findById(Long id);
+		ExerciseEntity findByIdAndUser(Long id, String username);
 
 		ExerciseEntity updateById(Long id, ExerciseDto exerciseDto);
 
