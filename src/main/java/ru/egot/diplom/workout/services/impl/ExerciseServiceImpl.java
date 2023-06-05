@@ -10,7 +10,6 @@ import ru.egot.diplom.workout.repositories.TrainingRepo;
 import ru.egot.diplom.workout.services.ExerciseService;
 import ru.egot.diplom.workout.services.UserService;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -51,11 +50,6 @@ public class ExerciseServiceImpl implements ExerciseService {
     @Override
     public ExerciseEntity updateById(Long id, ExerciseDto exerciseDto) {
         return findById(id).setName(exerciseDto.getName())
-                .setTrainingEntities(
-                        trainingRepo.findByIdAndDeletedDateIsNull(exerciseDto.getTrainingId())
-                                .map(Collections::singletonList)
-                                .orElseThrow(() -> new NotFoundException("Training with id: %s not found".formatted(exerciseDto.getTrainingId())))
-                )
                 .setSets(exerciseDto.getSets())
                 .setRepeats(exerciseDto.getRepeats())
                 .setWeight(exerciseDto.getWight())
@@ -71,12 +65,6 @@ public class ExerciseServiceImpl implements ExerciseService {
                     .orElseThrow(() -> new NotFoundException("Exercise with id: %s not found".formatted(exerciseId)));
         }
         return new ExerciseEntity().setUser(userService.getUserByName(exerciseDto.getUserId()))
-                .setTrainingEntities(
-                        exerciseDto.getTrainingId() == null ? null :
-                                trainingRepo.findByIdAndDeletedDateIsNull(exerciseDto.getTrainingId())
-                                        .map(Collections::singletonList)
-                                        .orElseThrow(() -> new NotFoundException("Training with id: %s not found".formatted(exerciseDto.getTrainingId())))
-                )
                 .setName(exerciseDto.getName())
                 .setSets(exerciseDto.getSets())
                 .setRepeats(exerciseDto.getRepeats())
