@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/public/trainings")
+@CrossOrigin
 public class TrainingController {
 
 		private final TrainingPlanService trainingPlanService;
