@@ -1,6 +1,5 @@
 package ru.egot.diplom.workout.services.impl;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,11 +25,6 @@ public class UserServiceImpl implements UserService {
 		private final UserRepo userRepo;
 
 		private final PasswordEncoder passwordEncoder;
-
-		@PostConstruct
-		public void addUser() {
-				userRepo.save(new User("@Egorkaaaa", passwordEncoder.encode("123")));
-		}
 
 		@Override
 		public User getUserByName(String username) throws UsernameNotFoundException {
