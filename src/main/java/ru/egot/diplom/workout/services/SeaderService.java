@@ -16,6 +16,7 @@ import ru.egot.diplom.workout.repositories.TrainingRepo;
 import ru.egot.diplom.workout.repositories.UserRepo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -88,7 +89,7 @@ public class SeaderService {
                 .map(data -> DashboardDataDto.builder()
                         .username(user.getName())
                         .type(Type.SLEEP)
-                        .date(LocalDate.now().toString())
+                        .date(LocalTime.now().toString())
                         .actual(data.getActual())
                         .plan(data.getPlan())
                         .build()
@@ -98,7 +99,7 @@ public class SeaderService {
                 .map(data -> DashboardDataDto.builder()
                         .username(user.getName())
                         .type(Type.SLEEP)
-                        .date(LocalDate.now().toString())
+                        .date(LocalTime.now().toString())
                         .actual(data.getActual())
                         .plan(data.getPlan())
                         .build()
