@@ -8,10 +8,12 @@ import ru.egot.diplom.workout.entity.Type;
 @AllArgsConstructor
 public class Notification {
 
-		private Type type;
+    private Type type;
 
-		private String userId;
+    private String userId;
 
-		private Boolean enabled;
+    private String time;
+
+    private Boolean enabled;
 
 }

@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface NotificationService {
 
-		List<NotificationEntity> setNotificationForUser(List<Notification> notification) throws UsernameNotFoundException;
+    List<NotificationEntity> setNotificationForUser(List<Notification> notification) throws UsernameNotFoundException;
 
-		void disableNotification(Notification notification) throws UsernameNotFoundException;
+    List<NotificationEntity> getNotificationForUser(String username) throws UsernameNotFoundException;
+
+    void disableNotification(Notification notification) throws UsernameNotFoundException;
 }

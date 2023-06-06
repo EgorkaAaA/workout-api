@@ -1,12 +1,20 @@
 package ru.egot.diplom.workout.dto.statistic;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.egot.diplom.workout.entity.SleepEntity;
 
 import java.time.LocalDate;
 
+@Setter
+@Getter
 public class SleepStatisticImpl implements Statistic {
 
-    private SleepEntity sleepEntity;
+    private final SleepEntity sleepEntity;
+
+    private Double planAvg;
+
+    private Double actualAvg;
 
     public SleepStatisticImpl(SleepEntity sleepEntity) {
         this.sleepEntity = sleepEntity;
@@ -23,12 +31,12 @@ public class SleepStatisticImpl implements Statistic {
     }
 
     @Override
-    public Integer getActual() {
+    public Double getActual() {
         return sleepEntity.getHourActual();
     }
 
     @Override
-    public Integer getPlan() {
+    public Double getPlan() {
         return sleepEntity.getHourPlan();
     }
 }

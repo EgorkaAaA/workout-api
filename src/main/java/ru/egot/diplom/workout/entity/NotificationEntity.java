@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalTime;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +28,10 @@ public class NotificationEntity extends BaseEntity {
     @Column(name = "TYPE")
     @NotNull
     private Type type;
+
+    @Column(name = "TIME", columnDefinition = "TIME")
+    @NotNull
+    private LocalTime time;
 
     @Column(name = "ENABLED")
     @NotNull

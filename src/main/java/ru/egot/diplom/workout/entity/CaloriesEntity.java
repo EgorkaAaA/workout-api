@@ -30,10 +30,10 @@ public class CaloriesEntity extends BaseEntity{
 
     @NotNull
     @Column(name = "CALORIES_ACTUAL")
-    private long caloriesActual;
+    private double caloriesActual;
 
     @NotNull
     @Column(name = "CALORIES_PLAN")
-    private long caloriesPlan;
+    private double caloriesPlan;
 
 }

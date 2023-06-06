@@ -1,12 +1,21 @@
 package ru.egot.diplom.workout.dto.statistic;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.egot.diplom.workout.entity.CaloriesEntity;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class CaloriesStatisticImpl implements Statistic {
 
     private CaloriesEntity caloriesEntity;
+
+    private Double planAvg;
+
+    private Double actualAvg;
+
 
     public CaloriesStatisticImpl(CaloriesEntity caloriesEntity) {
         this.caloriesEntity = caloriesEntity;
@@ -23,12 +32,12 @@ public class CaloriesStatisticImpl implements Statistic {
     }
 
     @Override
-    public Integer getActual() {
-        return (int) caloriesEntity.getCaloriesActual();
+    public Double getActual() {
+        return caloriesEntity.getCaloriesActual();
     }
 
     @Override
-    public Integer getPlan() {
-        return (int) caloriesEntity.getCaloriesPlan();
+    public Double getPlan() {
+        return caloriesEntity.getCaloriesPlan();
     }
 }

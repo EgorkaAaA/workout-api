@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum Type {
 
     SLEEP("sleep"),
+    TRAINING("training"),
     CALORIES("calories");
 
     private final String name;

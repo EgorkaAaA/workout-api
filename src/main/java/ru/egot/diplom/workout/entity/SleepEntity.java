@@ -32,11 +32,11 @@ public class SleepEntity extends BaseEntity {
     @NotNull
     @Range(max = 24, message = "Время сна не может быть отрицательным или больше 24 часов!")
     @Column(name = "HOUR_ACTUAL")
-    private int hourActual;
+    private double hourActual;
 
     @NotNull
     @Range(max = 24, message = "Время сна не может быть отрицательным или больше 24 часов!")
     @Column(name = "HOUR_PLAN")
-    private int hourPlan;
+    private double hourPlan;
 
 }

@@ -8,8 +8,16 @@ public interface Statistic {
 
     LocalDate getDate();
 
-    Integer getActual();
+    Double getActual();
 
-    Integer getPlan();
+    Double getPlan();
+
+    Double getPlanAvg();
+
+    Double getActualAvg();
+
+    void setPlanAvg(Double avg);
+
+    void setActualAvg(Double avg);
 
 }
