@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDate;
 
@@ -30,12 +29,10 @@ public class SleepEntity extends BaseEntity {
     private LocalDate date;
 
     @NotNull
-    @Range(max = 24, message = "Время сна не может быть отрицательным или больше 24 часов!")
     @Column(name = "HOUR_ACTUAL")
     private double hourActual;
 
     @NotNull
-    @Range(max = 24, message = "Время сна не может быть отрицательным или больше 24 часов!")
     @Column(name = "HOUR_PLAN")
     private double hourPlan;
 
