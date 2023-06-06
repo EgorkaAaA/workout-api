@@ -14,15 +14,15 @@ import java.util.List;
 @RequestMapping("/public/dashboard")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class DashboardController {
 
-    private final DashboardService dashboardService;
+		private final DashboardService dashboardService;
 
-    @GetMapping
-    @CrossOrigin
-    public ResponseEntity<List<Dashboard>> getGraph(@RequestParam String username, @RequestParam LocalDate start, @RequestParam LocalDate finish) {
-        List<Dashboard> dashboardStatistic = dashboardService.getDashboardStatistic(username, start, finish);
-        return ResponseEntity.ok(dashboardStatistic);
-    }
+		@GetMapping
+		public ResponseEntity<List<Dashboard>> getGraph(@RequestParam String username, @RequestParam LocalDate start, @RequestParam LocalDate finish) {
+				List<Dashboard> dashboardStatistic = dashboardService.getDashboardStatistic(username, start, finish);
+				return ResponseEntity.ok(dashboardStatistic);
+		}
 
 }

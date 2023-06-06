@@ -17,16 +17,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CaloriesEntity extends BaseEntity{
+public class CaloriesEntity extends BaseEntity {
 
-    @NotNull
-    @JoinColumn(name = "USER_ID")
-    @ManyToOne
-    private User user;
+		@NotNull
+		@JoinColumn(name = "USER_ID")
+		@ManyToOne
+		private User user;
 
-    @NotNull
-    @Column(name = "DATE")
-    private LocalDate date;
+		@NotNull
+		@Column(name = "DATE")
+		private LocalDate date;
 
     @NotNull
     @Column(name = "CALORIES_ACTUAL")
