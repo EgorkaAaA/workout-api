@@ -12,6 +12,7 @@ import ru.egot.diplom.workout.services.DashboardService;
 import ru.egot.diplom.workout.services.UserService;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,11 +63,12 @@ public class DashboardServiceImpl implements DashboardService {
 
     @Override
     public Dashboard setDashboardStatistic(DashboardDataDto dataDto) {
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("HH:mm");
         if (Type.SLEEP.equals(dataDto.getType())) {
             SleepEntity save = sleepStatisticRepo.save(
                     new SleepEntity(
                             userService.getUserByName(dataDto.getUsername()),
-                            LocalDate.parse(dataDto.getDate()),
+                            LocalDate.parse(dataDto.getDate(), pattern),
                             dataDto.getActual(),
                             dataDto.getPlan()
                     )
@@ -88,7 +90,7 @@ public class DashboardServiceImpl implements DashboardService {
             CaloriesEntity save = caloriesStatisticRepo.save(
                     new CaloriesEntity(
                             userService.getUserByName(dataDto.getUsername()),
-                            LocalDate.parse(dataDto.getDate()),
+                            LocalDate.parse(dataDto.getDate(), pattern),
                             dataDto.getActual(),
                             dataDto.getPlan()
                     )
