@@ -10,6 +10,7 @@ import ru.egot.diplom.workout.services.NotificationService;
 import ru.egot.diplom.workout.services.UserService;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -27,7 +28,7 @@ public class NotificationServiceImpl implements NotificationService {
                         n -> new NotificationEntity(
                                 userService.getUserByName(n.getUserId()),
                                 n.getType(),
-                                LocalTime.parse(n.getTime()),
+                                LocalTime.parse(n.getTime(), DateTimeFormatter.ISO_TIME),
                                 n.getEnabled()
                         )
                 )
