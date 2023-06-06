@@ -28,7 +28,7 @@ public class NotificationServiceImpl implements NotificationService {
                         n -> new NotificationEntity(
                                 userService.getUserByName(n.getUserId()),
                                 n.getType(),
-                                LocalTime.parse(n.getTime(), DateTimeFormatter.ISO_TIME),
+                                LocalTime.parse(n.getTime(), DateTimeFormatter.ofPattern("HH:mm")),
                                 n.getEnabled()
                         )
                 )
