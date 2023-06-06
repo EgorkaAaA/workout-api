@@ -77,9 +77,9 @@ public class SeaderService {
 
         notificationService.setNotificationForUser(
                 List.of(
-                        new Notification(Type.SLEEP, user.getName(), LocalDate.now().toString(), true),
-                        new Notification(Type.CALORIES, user.getName(), LocalDate.now().toString(), true),
-                        new Notification(Type.TRAINING, user.getName(), LocalDate.now().toString(), true)
+                        new Notification(Type.SLEEP, user.getName(), LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()).toString(), true),
+                        new Notification(Type.CALORIES, user.getName(), LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()).toString(), true),
+                        new Notification(Type.TRAINING, user.getName(), LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()).toString(), true)
                 )
         );
     }
@@ -89,7 +89,7 @@ public class SeaderService {
                 .map(data -> DashboardDataDto.builder()
                         .username(user.getName())
                         .type(Type.SLEEP)
-                        .date(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()).toString())
+                        .date(LocalDate.now().toString())
                         .actual(data.getActual())
                         .plan(data.getPlan())
                         .build()
@@ -99,7 +99,7 @@ public class SeaderService {
                 .map(data -> DashboardDataDto.builder()
                         .username(user.getName())
                         .type(Type.SLEEP)
-                        .date(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()).toString())
+                        .date(LocalDate.now().toString())
                         .actual(data.getActual())
                         .plan(data.getPlan())
                         .build()
