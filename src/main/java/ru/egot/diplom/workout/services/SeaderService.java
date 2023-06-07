@@ -41,32 +41,32 @@ public class SeaderService {
     public void seed() {
         User user = userRepo.save(new User("@Egorkaaaa", passwordEncoder.encode("123")));
         List<ExerciseEntity> exerciseEntities = exerciseRepo.saveAll(List.of(
-                new ExerciseEntity().setName("Вадим лох")
+                new ExerciseEntity().setName("Стагновая тяга")
                         .setUser(user)
                         .setSets(10)
                         .setRepeats(20)
                         .setDuration("10:00")
                         .setWeight(1000)
-                        .setComment("Поднять Вадима массой 1000 кг на 10 минут так по 20 раз в 10 подходов"),
-                new ExerciseEntity().setName("Егор лох")
+                        .setComment("Осторожно на подъеме"),
+                new ExerciseEntity().setName("Лодочка")
                         .setUser(user)
                         .setSets(2)
                         .setRepeats(50)
                         .setWeight(20)
-                        .setComment("Поднять Егора массой 20 кг над головой и попустить так по 50 раз в 2 подхода"),
-                new ExerciseEntity().setName("Дима лох")
+                        .setComment("Осторожно на подъеме"),
+                new ExerciseEntity().setName("Самолетик")
                         .setUser(user)
                         .setSets(32)
                         .setRepeats(1)
                         .setDuration("60:00")
                         .setWeight(2)
-                        .setComment("Подбросить Диму массой 2 кг на 60 минут так по 1 раз в 32 подхода")
+                        .setComment("Осторожно на подъеме")
                 )
         );
         trainingRepo.save(
                 new TrainingEntity().toBuilder()
                         .user(user)
-                        .name("Мега лоховская треня")
+                        .name("Тренировка для спины")
                         .exercises(exerciseEntities)
                         .comment("Когда делал в прошлый раз потянул спину будь осторожен")
                         .enabled(true)
@@ -89,7 +89,7 @@ public class SeaderService {
                 .map(data -> DashboardDataDto.builder()
                         .username(user.getName())
                         .type(Type.SLEEP)
-                        .date(LocalDate.now().toString())
+                        .date(data.getDate())
                         .actual(data.getActual())
                         .plan(data.getPlan())
                         .build()
@@ -98,8 +98,8 @@ public class SeaderService {
         createCaloriesData().stream()
                 .map(data -> DashboardDataDto.builder()
                         .username(user.getName())
-                        .type(Type.SLEEP)
-                        .date(LocalDate.now().toString())
+                        .type(Type.CALORIES)
+                        .date(data.getDate())
                         .actual(data.getActual())
                         .plan(data.getPlan())
                         .build()

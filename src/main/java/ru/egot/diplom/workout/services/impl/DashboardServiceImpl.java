@@ -37,11 +37,13 @@ public class DashboardServiceImpl implements DashboardService {
     public List<Dashboard> getDashboardStatistic(String username, LocalDate localDateStart, LocalDate localDateFinish) {
         final List<Dashboard> dashboards = new ArrayList<>();
         for (Type type : Type.values()) {
+            if (Type.TRAINING.equals(type)) {
+                continue;
+            }
             dashboards.add(
                     new Dashboard(
                             type.getName(),
-                            map.get(type)
-                                    .apply(username, localDateStart, localDateFinish)
+                            map.get(type).apply(username, localDateStart, localDateFinish)
                                     .stream()
                                     .map(
                                             s -> new DashboardData().toBuilder()
