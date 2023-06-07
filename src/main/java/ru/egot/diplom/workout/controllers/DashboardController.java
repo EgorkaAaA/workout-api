@@ -18,13 +18,8 @@ import java.util.List;
 @CrossOrigin
 public class DashboardController {
 
-		private final DashboardService dashboardService;
+    private final DashboardService dashboardService;
 
-		@GetMapping
-		public ResponseEntity<List<Dashboard>> getGraph(@RequestParam String username, @RequestParam LocalDate start, @RequestParam LocalDate finish) {
-				List<Dashboard> dashboardStatistic = dashboardService.getDashboardStatistic(username, start, finish);
-				return ResponseEntity.ok(dashboardStatistic);
-		}
     @GetMapping
     public ResponseEntity<List<Dashboard>> getGraph(@RequestParam String username, @RequestParam LocalDate start, @RequestParam LocalDate finish) {
         return ResponseEntity.ok(dashboardService.getDashboardStatistic(username, start, finish));
