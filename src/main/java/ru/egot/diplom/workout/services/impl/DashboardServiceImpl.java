@@ -108,8 +108,7 @@ public class DashboardServiceImpl implements DashboardService {
         }
         return null;
     }
-
-
+    
     private List<Statistic> getSleepStatistic(String username, LocalDate localDateTime, LocalDate localDateTime1) {
         List<SleepEntity> sleepEntities = sleepStatisticRepo.findAllByDateBetweenAndUserId(localDateTime, localDateTime1, userService.getUserByName(username));
         double actualAvg = getAvg(sleepEntities.stream().mapToDouble(SleepEntity::getHourActual));

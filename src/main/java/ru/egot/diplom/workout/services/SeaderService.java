@@ -45,7 +45,7 @@ public class SeaderService {
                         .setUser(user)
                         .setSets(10)
                         .setRepeats(20)
-                        .setTime("10:00")
+                        .setDuration("10:00")
                         .setWeight(1000)
                         .setComment("Поднять Вадима массой 1000 кг на 10 минут так по 20 раз в 10 подходов"),
                 new ExerciseEntity().setName("Егор лох")
@@ -58,7 +58,7 @@ public class SeaderService {
                         .setUser(user)
                         .setSets(32)
                         .setRepeats(1)
-                        .setTime("60:00")
+                        .setDuration("60:00")
                         .setWeight(2)
                         .setComment("Подбросить Диму массой 2 кг на 60 минут так по 1 раз в 32 подхода")
                 )

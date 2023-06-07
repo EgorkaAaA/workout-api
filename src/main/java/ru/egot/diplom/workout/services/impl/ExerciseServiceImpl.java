@@ -50,23 +50,18 @@ public class ExerciseServiceImpl implements ExerciseService {
                 .setSets(exerciseDto.getSets())
                 .setRepeats(exerciseDto.getRepeats())
                 .setWeight(exerciseDto.getWight())
-                .setTime(exerciseDto.getTime())
+                .setDuration(exerciseDto.getDuration())
                 .setComment(exerciseDto.getComment());
     }
 
     @Override
     public ExerciseEntity map(ExerciseDto exerciseDto) {
-        final Long exerciseId = exerciseDto.getExerciseId();
-        if (exerciseId != null) {
-            return exerciseRepo.findById(exerciseId)
-                    .orElseThrow(() -> new NotFoundException("Exercise with id: %s not found".formatted(exerciseId)));
-        }
         return new ExerciseEntity().setUser(userService.getUserByName(exerciseDto.getUserId()))
                 .setName(exerciseDto.getName())
                 .setSets(exerciseDto.getSets())
                 .setRepeats(exerciseDto.getRepeats())
                 .setWeight(exerciseDto.getWight())
-                .setTime(exerciseDto.getTime())
+                .setDuration(exerciseDto.getDuration())
                 .setComment(exerciseDto.getComment());
     }
 

@@ -65,8 +65,8 @@ public class TrainingController {
 		}
 
 		@GetMapping("/exercises")
-		public ResponseEntity<List<ExerciseEntity>> findAllExerciseByUserId(@RequestParam String userId) {
-				return ResponseEntity.ok(exerciseService.findAllByUserId(userId));
+		public ResponseEntity<List<ExerciseEntity>> findAllExerciseByUserId(@RequestParam String username) {
+				return ResponseEntity.ok(exerciseService.findAllByUserId(username));
 		}
 
 		@GetMapping("/exercises/{id}")

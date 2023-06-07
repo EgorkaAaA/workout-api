@@ -50,8 +50,7 @@ public class TrainingApiSenderImpl implements TrainingApiSender {
                                 TrainingApiResponse[].class,
                                 new HttpEntity<>(httpHeaders),
                                 uriVariables
-                        )
-                                .getBody()))
-                .toList();
+                        ).getBody())
+        ).toList();
     }
 }

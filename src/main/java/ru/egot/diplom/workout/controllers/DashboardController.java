@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.egot.diplom.workout.dto.statistic.Dashboard;
+import ru.egot.diplom.workout.dto.statistic.DashboardDataDto;
 import ru.egot.diplom.workout.services.DashboardService;
 
 import java.time.LocalDate;
@@ -14,15 +15,19 @@ import java.util.List;
 @RequestMapping("/public/dashboard")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class DashboardController {
 
     private final DashboardService dashboardService;
 
     @GetMapping
-    @CrossOrigin
     public ResponseEntity<List<Dashboard>> getGraph(@RequestParam String username, @RequestParam LocalDate start, @RequestParam LocalDate finish) {
-        List<Dashboard> dashboardStatistic = dashboardService.getDashboardStatistic(username, start, finish);
-        return ResponseEntity.ok(dashboardStatistic);
+        return ResponseEntity.ok(dashboardService.getDashboardStatistic(username, start, finish));
+    }
+
+    @PostMapping
+    public ResponseEntity<Dashboard> setGraph(@RequestBody DashboardDataDto dataDto) {
+        return ResponseEntity.ok(dashboardService.setDashboardStatistic(dataDto));
     }
 
 }

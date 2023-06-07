@@ -23,7 +23,7 @@ public class ExerciseDto {
 
     private Integer repeats;
 
-    private String time;
+    private String duration;
 
     private Integer wight;
 

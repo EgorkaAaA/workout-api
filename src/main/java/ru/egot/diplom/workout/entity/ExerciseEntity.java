@@ -34,7 +34,7 @@ public class ExerciseEntity extends BaseEntity {
     private Integer repeats;
 
     @Column(name = "TIME")
-    private String time;
+    private String duration;
 
     @Column(name = "WEIGHT")
     private Integer weight;

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +15,20 @@ import ru.egot.diplom.workout.services.UserService;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class UserController {
 
-		private final UserService userService;
+    private final UserService userService;
 
-		@SneakyThrows
-		@PostMapping("/registration")
-		public ResponseEntity<User> registrateUser(@RequestBody UserDto user) {
-				log.info("User with name: {}", user.getUsername());
-				return ResponseEntity.ok(userService.createUser(user));
-		}
+    @SneakyThrows
+    @PostMapping("/registration")
+    public ResponseEntity<User> registrateUser(@RequestBody UserDto user) {
+        log.info("User with name: {}", user.getUsername());
+        return ResponseEntity.ok(userService.createUser(user));
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody UserDto userDto) {
+
+    }
 }
