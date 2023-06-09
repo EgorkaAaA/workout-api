@@ -47,7 +47,7 @@ paths:
   /notification:
     post:
       tags:
-      - Notification
+        - Notification
       summary: enable notification by type
       operationId: enableNotification
       requestBody:
@@ -313,6 +313,24 @@ paths:
                 items:
                   $ref: "#/components/schemas/ExerciseEntity"
   /public/trainings/exercises:
+    post:
+      tags:
+        - Training
+      summary: "POST public/trainings/exercises"
+      operationId: "createExerciseByUserId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExerciseDto"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/ExerciseEntity"
     get:
       tags:
         - Training
