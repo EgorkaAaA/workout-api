@@ -63,28 +63,93 @@ public class SeaderService {
 										.setComment("Осторожно на подъеме")
 						)
 				);
-				for (int i = 0; i < 3; i++) {
-						trainingRepo.save(
-								new TrainingEntity().toBuilder()
-										.user(user)
-										.name("Тренировка для спины: " + i)
-										.exercises(exerciseEntities)
-										.comment("Когда делал в прошлый раз потянул спину будь осторожен")
-										.enabled(true)
-										.build()
-						);
-				}
-				for (int i = 0; i < 7; i++) {
-						trainingRepo.save(
-								new TrainingEntity().toBuilder()
-										.user(user)
-										.name("Тренировка для спины: " + i)
-										.exercises(exerciseEntities)
-										.comment("Когда делал в прошлый раз потянул спину будь осторожен")
-										.enabled(false)
-										.build()
-						);
-				}
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Тренировка для спины")
+								.exercises(exerciseEntities)
+								.comment("Когда делал в прошлый раз потянул спину будь осторожен")
+								.enabled(true)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Тренировка для ног")
+								.exercises(exerciseEntities)
+								.comment("Приседать аккуратно")
+								.enabled(true)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Тренировка для рук")
+								.exercises(exerciseEntities)
+								.comment("Хрустит рука на гантелях")
+								.enabled(true)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Тренировка для икр")
+								.exercises(exerciseEntities)
+//								.comment("Когда делал в прошлый раз потянул спину будь осторожен")
+								.enabled(false)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Тренировка для пресса")
+								.exercises(exerciseEntities)
+								.comment("Попробовать брать больше веса")
+								.enabled(false)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Комплексная 1 день")
+								.exercises(exerciseEntities)
+								.enabled(false)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Комплексаная 2 день")
+								.exercises(exerciseEntities)
+								.comment("Бегать нужно меньше")
+								.enabled(false)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Тренировка на 1 раз")
+								.exercises(exerciseEntities)
+								.comment("По видосу с ютуба https://www.youtube.com/watch?v=g2pfHZhHe1Q")
+								.enabled(false)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Разминка")
+								.exercises(exerciseEntities)
+								.enabled(false)
+								.build()
+				);
+				trainingRepo.save(
+						new TrainingEntity().toBuilder()
+								.user(user)
+								.name("Растяжка")
+								.exercises(exerciseEntities)
+								.enabled(false)
+								.build()
+				);
 
 				setDashboard(user);
 
