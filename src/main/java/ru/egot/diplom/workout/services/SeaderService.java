@@ -168,13 +168,15 @@ public class SeaderService {
 				Random random = new Random();
 				for (int j = 0; j < i; j++) {
 						exerciseEntities.add(
-								new ExerciseEntity().setName("12311")
-										.setComment("12321321")
-										.setUser(user)
-										.setSets(random.nextInt(0, 200))
-										.setWeight(random.nextInt(0, 200))
-										.setRepeats(random.nextInt(0, 200))
-										.setDuration("00:11")
+								exerciseRepo.save(
+										new ExerciseEntity().setName("12311")
+												.setComment("12321321")
+												.setUser(user)
+												.setSets(random.nextInt(0, 200))
+												.setWeight(random.nextInt(0, 200))
+												.setRepeats(random.nextInt(0, 200))
+												.setDuration("00:11")
+								)
 						);
 				}
 				return exerciseEntities;
