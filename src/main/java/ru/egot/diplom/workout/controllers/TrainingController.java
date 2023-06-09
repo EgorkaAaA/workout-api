@@ -74,6 +74,11 @@ public class TrainingController {
 				return ResponseEntity.ok(exerciseService.findByIdAndUser(id, username));
 		}
 
+		@PostMapping("/exercises")
+		public ResponseEntity<ExerciseEntity> createExerciseByUserId(@RequestBody ExerciseDto exerciseDto) {
+				return ResponseEntity.ok(exerciseService.createExercise(exerciseDto));
+		}
+
 		@GetMapping("/{id}/exercises")
 		public ResponseEntity<List<ExerciseEntity>> findAllExerciseByUserIdAndTrainingId(@PathVariable(name = "id") Long trainingId, @RequestParam String username) {
 				return ResponseEntity.ok(exerciseService.findAllByUserIdAndTrainingId(username, trainingId));
