@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TrainingRepo extends BaseRepo<TrainingEntity> {
 
-    List<TrainingEntity> findAllByUserAndEnabledIsTrueAndDeletedDateIsNullOrderByCreatedDateDesc(User user);
+    List<TrainingEntity> findAllByUserAndDeletedDateIsNullOrderByCreatedDateDesc(User user);
 
     Optional<TrainingEntity> findByIdAndUserAndDeletedDateIsNull(Long id, User user);
 }

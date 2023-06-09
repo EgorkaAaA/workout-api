@@ -63,6 +63,7 @@ public class SeaderService {
 										.setComment("Осторожно на подъеме")
 						)
 				);
+				Random random = new Random();
 				trainingRepo.save(
 						new TrainingEntity().toBuilder()
 								.user(user)
@@ -76,7 +77,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Тренировка для ног")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.comment("Приседать аккуратно")
 								.enabled(true)
 								.build()
@@ -85,7 +86,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Тренировка для рук")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.comment("Хрустит рука на гантелях")
 								.enabled(true)
 								.build()
@@ -94,7 +95,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Тренировка для икр")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 //								.comment("Когда делал в прошлый раз потянул спину будь осторожен")
 								.enabled(false)
 								.build()
@@ -103,7 +104,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Тренировка для пресса")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.comment("Попробовать брать больше веса")
 								.enabled(false)
 								.build()
@@ -112,7 +113,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Комплексная 1 день")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.enabled(false)
 								.build()
 				);
@@ -120,7 +121,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Комплексаная 2 день")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.comment("Бегать нужно меньше")
 								.enabled(false)
 								.build()
@@ -129,7 +130,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Тренировка на 1 раз")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.comment("По видосу с ютуба https://www.youtube.com/watch?v=g2pfHZhHe1Q")
 								.enabled(false)
 								.build()
@@ -138,7 +139,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Разминка")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.enabled(false)
 								.build()
 				);
@@ -146,7 +147,7 @@ public class SeaderService {
 						new TrainingEntity().toBuilder()
 								.user(user)
 								.name("Растяжка")
-								.exercises(exerciseEntities)
+								.exercises(getExerciseEntities(random.nextInt(1, 20), user))
 								.enabled(false)
 								.build()
 				);
@@ -160,6 +161,23 @@ public class SeaderService {
 								new Notification(Type.TRAINING, user.getName(), LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute()).toString(), true)
 						)
 				);
+		}
+
+		private List<ExerciseEntity> getExerciseEntities(int i, User user) {
+				List<ExerciseEntity> exerciseEntities = new ArrayList<>();
+				Random random = new Random();
+				for (int j = 0; j < i; j++) {
+						exerciseEntities.add(
+								new ExerciseEntity().setName("12311")
+										.setComment("12321321")
+										.setUser(user)
+										.setSets(random.nextInt(0, 200))
+										.setWeight(random.nextInt(0, 200))
+										.setRepeats(random.nextInt(0, 200))
+										.setDuration("00:11")
+						);
+				}
+				return exerciseEntities;
 		}
 
 		private void setDashboard(User user) {

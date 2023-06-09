@@ -46,7 +46,7 @@ public class TrainingServiceImpl implements TrainingService {
 
 		@Override
 		public List<TrainingEntity> getAllTrainingByUserId(String userId) {
-				return trainingRepo.findAllByUserAndEnabledIsTrueAndDeletedDateIsNullOrderByCreatedDateDesc(userService.getUserByName(userId));
+				return trainingRepo.findAllByUserAndDeletedDateIsNullOrderByCreatedDateDesc(userService.getUserByName(userId));
 		}
 
 		@Override
